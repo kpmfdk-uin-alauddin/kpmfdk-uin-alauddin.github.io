@@ -1,94 +1,139 @@
 <!doctype html>
 <html lang="id">
-  <head>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Komite Penjaminan Mutu (KPM) Fakultas Dakwah & Komunikasi UIN Alauddin Makassar" />
+  
+  <!-- SEO Meta Tags -->
+  <title>Pengaturan Sistem | KPM FDK UINAM</title>
+  <meta name="description" content="Dashboard pengaturan sistem penjaminan mutu internal Komite Penjaminan Mutu (KPM) FDK UIN Alauddin Makassar." />
   <meta name="author" content="Ariel Usman" />
+  <link rel="canonical" href="https://kpmfdk-uin-alauddin.github.io/settings/index.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pengaturan Sistem | KPM FDK UINAM" />
+  <meta property="og:description" content="Kelola preferensi notifikasi, hak akses anggota, dan jadwal evaluasi mutu." />
+  <meta property="og:image" content="../assets/logoSementaraKessos.png" />
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="../assets/tailwhip.css" />
   <link rel="stylesheet" href="../assets/styles.css" />
   <link rel="stylesheet" href="../assets/front.css" />
-  <title>Pengaturan - KPM</title>
 </head>
-  <body>
-    <header class="site-header">
-  <div class="container flex flex-wrap items-center justify-between">
-    <a href="../index.html" class="logo flex items-center gap-1" style="text-decoration:none; color:inherit;">
-      <img src="../assets/logoSementaraKessos.png" alt="Logo UINAM" style="height:48px;object-fit:contain"/>
-      <div>
-        <strong class="text-lg">KPM</strong>
-        <div class="muted text-sm">Fakultas Dakwah &amp; Komunikasi</div>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo flex items-center gap-2">
+        <img src="../assets/logoSementaraKessos.png" alt="Logo UINAM" style="height:48px; width:auto; object-fit:contain"/>
+        <div>
+          <strong class="text-lg block">KPM FDK UINAM</strong>
+          <div class="muted text-xs">Fakultas Dakwah &amp; Komunikasi</div>
+        </div>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+      <nav id="navMain" class="nav-main ml-auto">
+        <a href="../index.html" class="nav-link">Beranda</a>
+        <a href="../anggota/index.html" class="nav-link">Anggota</a>
+        <a href="../akreditasi/index.html" class="nav-link">Akreditasi</a>
+        <a href="../laporan/index.html" class="nav-link">Laporan</a>
+        <a href="../masuk/index.html" class="btn btn-secondary">Masuk</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <span class="badge badge-secondary mb-2">Panel Admin</span>
+      <h1>Pengaturan Sistem</h1>
+      <p class="lead">Konfigurasi preferensi notifikasi rapat, hak akses kelola dokumen akreditasi, serta penentuan timeline jadwal audit internal prodi.</p>
+      <div class="actions">
+        <a class="btn btn-secondary shadow" href="../index.html">Kembali ke Beranda</a>
+        <a class="btn btn-ghost" href="#news">Lihat Menu Pengaturan</a>
       </div>
-    </a>
-    <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
-    <nav id="navMain" class="nav-main ml-auto">
-      <a href="../index.html" class="nav-link">Beranda</a>
-      <a href="../anggota/index.html" class="nav-link">Anggota</a>
-      <a href="../akreditasi/index.html" class="nav-link">Akreditasi</a>
-      <a href="../laporan/index.html" class="nav-link">Laporan</a>
-      <a href="../masuk/index.html" class="btn">Masuk</a>
-    </nav>
-  </div>
-</header>
-+
-+    <section class="hero">
-+      <div class="hero-overlay"></div>
-+      <div class="container hero-content">
-+        <h1>Pengaturan Sistem</h1>
-+        <p class="lead">Atur preferensi notifikasi, akses anggota, dan jadwal evaluasi untuk mendukung proses mutu.</p>
-+        <div class="actions">
-+          <a class="btn" href="../masuk/">Masuk</a>
-+          <a class="btn btn-ghost" href="#news">Lihat Berita</a>
-+        </div>
-+      </div>
-+    </section>
-+
-+    <main class="container" id="news">
-+      <section style="margin-top:1.5rem">
-+        <h2>Pengaturan & Preferensi</h2>
-+        <p class="muted">Opsi konfigurasi awal untuk operasional KPM.</p>
-+        <div class="grid cols-3 gap-1" style="margin-top:1rem">
-+          <article class="card">
-+            <img src="https://images.unsplash.com/photo-1554163065-55a6c2b1f0b8?w=800&q=60" alt="Preferensi" style="width:100%;height:160px;object-fit:cover;border-radius:6px"/>
-+            <h3 style="margin-top:.5rem">Notifikasi</h3>
-+            <p class="muted">Kelola notifikasi rapat, pengumpulan dokumen, dan pengumuman.</p>
-+          </article>
-+          <article class="card">
-+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=60" alt="Akses" style="width:100%;height:160px;object-fit:cover;border-radius:6px"/>
-+            <h3 style="margin-top:.5rem">Hak Akses</h3>
-+            <p class="muted">Kelola peran anggota dan hak akses pada dokumen.</p>
-+          </article>
-+          <article class="card">
-+            <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?w=800&q=60" alt="Jadwal" style="width:100%;height:160px;object-fit:cover;border-radius:6px"/>
-+            <h3 style="margin-top:.5rem">Jadwal Evaluasi</h3>
-+            <p class="muted">Atur periode evaluasi dan tenggat pengumpulan bukti.</p>
-+          </article>
-+        </div>
-+      </section>
-+
-+      <section style="margin-top:1.5rem">
-+        <h2>Galeri & Dokumentasi</h2>
-+        <div class="grid cols-3 gap-1" style="margin-top:1rem">
-+          <div class="card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=60" style="width:100%;height:140px;object-fit:cover;border-radius:6px" alt="Foto 1"/></div>
-+          <div class="card"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&q=60" style="width:100%;height:140px;object-fit:cover;border-radius:6px" alt="Foto 2"/></div>
-+        </div>
-+      </section>
-+    </main>
-+
-+    <footer class="site-footer">
-  <div class="container flex flex-wrap justify-between gap-4">
-    <div style="max-width:400px;">
-      <strong class="text-lg">Dakwah dan Komunikasi &mdash; UIN Alauddin Makassar</strong>
-      <div class="muted mt-1">Jalan H. M. Yasin Limpo No. 36 Romang Polong, Gowa, Sulawesi Selatan</div>
-      <div class="mt-2">Tel: <span class="muted">085343803672</span><br/>Email: <span class="muted">kpi.fdk@uin-alauddin.ac.id</span></div>
     </div>
-    <div class="text-right">
-      <strong class="text-lg">KPM UINAM</strong>
-      <div class="muted mt-1">Dibuat oleh Ariel Usman &copy; 2026</div>
+  </section>
+
+  <!-- Breadcrumbs -->
+  <div class="container mt-3">
+    <div class="breadcrumb-nav">
+      <div class="breadcrumb"></div>
     </div>
   </div>
-</footer>
-+
-+    <script src="../assets/app.js"></script>
-+  </body>
-+</html>
+
+  <main class="container" id="news">
+    <section>
+      <h2>Pengaturan &amp; Preferensi</h2>
+      <p class="muted mb-3">Modul kontrol administrasi dan konfigurasi awal operasional KPM FDK UINAM.</p>
+      
+      <div class="grid-responsive cols-3-md">
+        <!-- Notifikasi -->
+        <article class="card hover-lift p-0 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1554163065-55a6c2b1f0b8?w=800&q=60" alt="Preferensi Notifikasi" style="width:100%; height:160px; object-fit:cover;"/>
+          <div class="p-3">
+            <h3 class="mb-1 text-lg">Notifikasi</h3>
+            <p class="muted text-sm mb-0">Kelola pengaturan peringatan otomatis email untuk tenggat waktu penyerahan berkas akreditasi prodi.</p>
+          </div>
+        </article>
+
+        <!-- Hak Akses -->
+        <article class="card hover-lift p-0 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=60" alt="Hak Akses Anggota" style="width:100%; height:160px; object-fit:cover;"/>
+          <div class="p-3">
+            <h3 class="mb-1 text-lg">Hak Akses</h3>
+            <p class="muted text-sm mb-0">Atur hak akses pengelolaan file (Viewer, Editor, Administrator) bagi perwakilan penjaminan mutu tiap prodi.</p>
+          </div>
+        </article>
+
+        <!-- Jadwal Evaluasi -->
+        <article class="card hover-lift p-0 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?w=800&q=60" alt="Jadwal Evaluasi" style="width:100%; height:160px; object-fit:cover;"/>
+          <div class="p-3">
+            <h3 class="mb-1 text-lg">Jadwal Evaluasi</h3>
+            <p class="muted text-sm mb-0">Konfigurasi timeline pelaksanaan Audit Mutu Internal (AMI) dan monitoring kepuasan layanan per semester.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="mt-4">
+      <h2>Galeri Aktivitas Administrasi</h2>
+      <div class="grid-responsive cols-2-md">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=60" alt="Aktivitas Administrasi 1"/>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&q=60" alt="Aktivitas Administrasi 2"/>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container flex flex-wrap justify-between gap-4">
+      <div style="max-width:480px;">
+        <strong class="text-lg block mb-1">Fakultas Dakwah dan Komunikasi &mdash; UIN Alauddin Makassar</strong>
+        <div class="muted">Kampus II: Jalan H. M. Yasin Limpo No. 36 Romang Polong, Somba Opu, Gowa, Sulawesi Selatan</div>
+        <div class="mt-2 text-sm">
+          <strong>Telepon:</strong> <span class="muted">085343803672</span><br/>
+          <strong>Email:</strong> <span class="muted">kpi.fdk@uin-alauddin.ac.id</span>
+        </div>
+      </div>
+      <div class="text-right-mobile mt-2">
+        <strong class="text-lg block">KPM FDK UINAM</strong>
+        <div class="muted text-sm">Dibuat oleh Ariel Usman &copy; 2026</div>
+      </div>
+    </div>
+    <div class="container">
+      <hr class="footer-divider" />
+      <div class="text-center text-xs muted">
+        &copy; 2026 Komite Penjaminan Mutu FDK UIN Alauddin Makassar. Hak Cipta Dilindungi Undang-Undang.
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/app.js"></script>
+</body>
+</html>

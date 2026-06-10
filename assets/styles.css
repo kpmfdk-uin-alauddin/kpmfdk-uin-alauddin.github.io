@@ -1,1 +1,5 @@
-body { -webkit-font-smoothing: antialiased; } h1, h2, h3, h4 { color: var(--text); margin-top: 0; } h2 { font-size: 1.75rem; margin-bottom: 1rem; } h3 { font-size: 1.25rem; margin-bottom: 0.5rem; } p { margin-top: 0; margin-bottom: 1rem; color: var(--muted); } article.card img { transition: transform 0.3s ease; } article.card:hover img { transform: scale(1.02); } .card { overflow: hidden; }\n.hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; margin-bottom: 0 !important; } .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+/* Custom user styles - add specific page design overrides here */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
