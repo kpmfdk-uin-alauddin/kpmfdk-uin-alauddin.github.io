@@ -56,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
                        (currentPath.endsWith('/') && linkPath.endsWith('index.html') && currentPath.replace(/\/$/, '') === linkPath.substring(0, linkPath.lastIndexOf('/'))) ||
                        (currentPath.includes('/anggota/') && linkPath.includes('/anggota/')) ||
                        (currentPath.includes('/akreditasi/') && linkPath.includes('/akreditasi/')) ||
-                       (currentPath.includes('/laporan/') && linkPath.includes('/laporan/'));
+                       (currentPath.includes('/laporan/') && linkPath.includes('/laporan/')) ||
+                       (currentPath.includes('/dokumen/') && linkPath.includes('/dokumen/'));
 
       if (isActive) {
         link.classList.add('active');
@@ -123,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (breadcrumb && title !== 'KPM') {
       // Determine directory depth
       let relativePrefix = '../';
-      if (path.includes('/anggota/') || path.includes('/akreditasi/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/')) {
+      if (path.includes('/anggota/') || path.includes('/akreditasi/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
         relativePrefix = '../';
       }
       if (path.split('/').filter(Boolean).length > 2) {
@@ -158,6 +159,14 @@ document.addEventListener('DOMContentLoaded', () => {
           <a href="${relativePrefix}index.html">Beranda</a>
           <span class="breadcrumb-separator">/</span>
           <a href="${relativePrefix}laporan/index.html">Laporan</a>
+          <span class="breadcrumb-separator">/</span>
+          <span>${title}</span>
+        `;
+      } else if (path.includes('/dokumen/') && !path.endsWith('/dokumen/index.html')) {
+        breadcrumb.innerHTML = `
+          <a href="${relativePrefix}index.html">Beranda</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="${relativePrefix}dokumen/index.html">Dokumen</a>
           <span class="breadcrumb-separator">/</span>
           <span>${title}</span>
         `;

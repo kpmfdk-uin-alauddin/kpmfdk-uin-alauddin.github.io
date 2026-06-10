@@ -65,12 +65,19 @@
   flex-wrap: wrap;
 }
 
-/* Main Layout Setup */
 main {
   flex: 1;
   padding-top: 3rem;
-  padding-bottom: 4rem;
+  padding-bottom: 6rem;
 }
+
+/* Ensure the gallery section (last section in main) has extra bottom spacing */
+main > section:last-of-type {
+  margin-bottom: 4rem;
+}
+
+
+
 
 /* Breadcrumb nav wrapper */
 .breadcrumb-nav {

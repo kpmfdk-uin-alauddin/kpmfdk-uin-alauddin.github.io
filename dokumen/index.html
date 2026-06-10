@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Meta Tags -->
+  <title>Dokumen & Instrumen Mutu | KPM FDK UINAM</title>
+  <meta name="description" content="Portal unduhan dokumen resmi, formulir instrumen, kebijakan mutu, dan panduan audit internal Fakultas Dakwah & Komunikasi UIN Alauddin Makassar." />
+  <meta name="author" content="Ariel Usman" />
+  <link rel="canonical" href="https://kpmfdk-uin-alauddin.github.io/dokumen/index.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dokumen & Instrumen Mutu | KPM FDK UINAM" />
+  <meta property="og:description" content="Unduh dokumen SPMI, panduan AMI, instrumen evaluasi, dan kebijakan penjaminan mutu FDK UINAM." />
+  <meta property="og:image" content="../assets/logoSementaraKessos.png" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/tailwhip.css" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="../assets/front.css" />
+  
+  <!-- Custom page styling for Modal & Cards -->
+  <style>
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 60, 42, 0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-box {
+      background: var(--card);
+      width: 90%;
+      max-width: 650px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(5,74,52,0.08);
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-overlay.open .modal-box {
+      transform: translateY(0);
+    }
+    .modal-header {
+      background: var(--primary-deep);
+      color: #ffffff;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header h3 {
+      color: #ffffff;
+      margin: 0;
+      font-size: 1.25rem;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 1.75rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .modal-close:hover {
+      color: var(--secondary);
+    }
+    .modal-body {
+      padding: 1.75rem;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .document-preview-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+    }
+    
+    /* Search Bar styling */
+    .search-container {
+      margin-bottom: 2rem;
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(5,74,52,0.04);
+    }
+    .search-wrapper {
+      position: relative;
+      width: 100%;
+    }
+    .search-input {
+      width: 100%;
+      padding: 0.875rem 1.25rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: #fafdfc;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(5,74,52,0.1);
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo flex items-center gap-2">
+        <img src="../assets/logoSementaraKessos.png" alt="Logo UINAM" style="height:48px; width:auto; object-fit:contain"/>
+        <div>
+          <strong class="text-lg block">KPM FDK UINAM</strong>
+          <div class="muted text-xs">Fakultas Dakwah &amp; Komunikasi</div>
+        </div>
+      </a>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+      <nav id="navMain" class="nav-main ml-auto">
+        <a href="../index.html" class="nav-link">Beranda</a>
+        <a href="../anggota/index.html" class="nav-link">Anggota</a>
+        <a href="../akreditasi/index.html" class="nav-link">Akreditasi</a>
+        <a href="../laporan/index.html" class="nav-link">Laporan</a>
+        <a href="../dokumen/index.html" class="nav-link active">Dokumen</a>
+        <a href="../masuk/index.html" class="btn btn-secondary">Masuk</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <span class="badge badge-secondary mb-2">Pusat Unduhan</span>
+      <h1>Dokumen &amp; Instrumen Mutu</h1>
+      <p class="lead">Akses berkas standar SPMI, buku pedoman audit internal, template formulir evaluasi, serta dokumen instrumen akreditasi program studi.</p>
+    </div>
+  </section>
+
+  <!-- Breadcrumbs -->
+  <div class="container mt-3">
+    <div class="breadcrumb-nav">
+      <div class="breadcrumb"></div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- Search Bar -->
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" class="search-input" placeholder="Cari dokumen berdasarkan judul atau kriteria (misal: SPMI, AMI, Kurikulum)..." />
+      </div>
+    </div>
+
+    <!-- Grid of Documents -->
+    <section>
+      <h2>Daftar Dokumen Resmi</h2>
+      <p class="muted mb-3">Klik opsi untuk melihat pratinjau dokumen atau unduh berkas secara langsung.</p>
+      
+      <div class="grid-responsive cols-3-md">
+        <!-- Doc 1 -->
+        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
+          <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=60" alt="Buku Standar SPMI FDK" style="width:100%; height:180px; object-fit:cover;"/>
+          <div class="p-3 flex flex-col" style="flex:1;">
+            <span class="badge badge-success mb-2">Kebijakan</span>
+            <h3 class="mb-1 text-lg">Buku Standar SPMI FDK 2026</h3>
+            <p class="muted text-sm mb-3" style="flex:1;">Pedoman Sistem Penjaminan Mutu Internal (SPMI) yang menjadi rujukan implementasi layanan tridharma fakultas.</p>
+            <div class="flex gap-2">
+              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Buku Standar SPMI FDK 2026', 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=60', 'Buku Standar Sistem Penjaminan Mutu Internal (SPMI) Fakultas Dakwah & Komunikasi tahun 2026 memuat 24 standar utama pendidikan, penelitian, pengabdian, serta standar tata pamong internal yang wajib dilaksanakan oleh seluruh civitas akademika.', 'standar_spmi_fdk_2026.pdf')">Pratinjau</button>
+              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('standar_spmi_fdk_2026.pdf', 'Buku Standar SPMI FDK 2026')">Unduh</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Doc 2 -->
+        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
+          <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=60" alt="Buku Panduan AMI FDK" style="width:100%; height:180px; object-fit:cover;"/>
+          <div class="p-3 flex flex-col" style="flex:1;">
+            <span class="badge badge-warning mb-2">Panduan</span>
+            <h3 class="mb-1 text-lg">Buku Panduan AMI 2026</h3>
+            <p class="muted text-sm mb-3" style="flex:1;">Panduan teknis bagi auditor dan auditee dalam menyelenggarakan Audit Mutu Internal tahunan prodi.</p>
+            <div class="flex gap-2">
+              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Buku Panduan AMI 2026', 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=60', 'Buku panduan Audit Mutu Internal (AMI) memuat alur, jadwal, instrumen penilaian kepatuhan, format laporan temuan audit, serta pedoman tindakan koreksi pasca-audit prodi.', 'panduan_ami_2026.pdf')">Pratinjau</button>
+              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('panduan_ami_2026.pdf', 'Buku Panduan AMI 2026')">Unduh</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Doc 3 -->
+        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
+          <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=60" alt="Kuesioner Kepuasan Layanan" style="width:100%; height:180px; object-fit:cover;"/>
+          <div class="p-3 flex flex-col" style="flex:1;">
+            <span class="badge badge-info mb-2">Instrumen</span>
+            <h3 class="mb-1 text-lg">Kuesioner Kepuasan Layanan</h3>
+            <p class="muted text-sm mb-3" style="flex:1;">Instrumen survei resmi untuk mengukur indeks kepuasan mahasiswa, dosen, dan tenaga kependidikan.</p>
+            <div class="flex gap-2">
+              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Kuesioner Kepuasan Layanan', 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=60', 'Formulir kuesioner terstandarisasi untuk menjaring umpan balik civitas akademika terkait keefektifan perkuliahan, keramahan layanan tata usaha, serta kelayakan fasilitas kelas.', 'kuesioner_kepuasan_layanan.pdf')">Pratinjau</button>
+              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('kuesioner_kepuasan_layanan.pdf', 'Kuesioner Kepuasan Layanan')">Unduh</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Doc 4 -->
+        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=60" alt="SOP Evaluasi Pembelajaran" style="width:100%; height:180px; object-fit:cover;"/>
+          <div class="p-3 flex flex-col" style="flex:1;">
+            <span class="badge badge-success mb-2">SOP</span>
+            <h3 class="mb-1 text-lg">SOP Evaluasi Pembelajaran</h3>
+            <p class="muted text-sm mb-3" style="flex:1;">Standar Operasional Prosedur pelaksanaan monitoring perkuliahan tengah dan akhir semester.</p>
+            <div class="flex gap-2">
+              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('SOP Evaluasi Pembelajaran', 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=60', 'Alur koordinasi, jadwal validasi kelayakan soal ujian oleh gugus penjaminan mutu prodi, serta mekanisme monitoring kehadiran kelas dosen.', 'sop_evaluasi_pembelajaran.pdf')">Pratinjau</button>
+              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('sop_evaluasi_pembelajaran.pdf', 'SOP Evaluasi Pembelajaran')">Unduh</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Doc 5 -->
+        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
+          <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?w=800&q=60" alt="Kebijakan Mutu FDK" style="width:100%; height:180px; object-fit:cover;"/>
+          <div class="p-3 flex flex-col" style="flex:1;">
+            <span class="badge badge-success mb-2">Kebijakan</span>
+            <h3 class="mb-1 text-lg">Kebijakan Mutu Akademik FDK</h3>
+            <p class="muted text-sm mb-3" style="flex:1;">Dokumen pernyataan dewan pimpinan fakultas mengenai visi, arah, dan komitmen penjaminan mutu.</p>
+            <div class="flex gap-2">
+              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Kebijakan Mutu Akademik FDK', 'https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?w=800&q=60', 'Dokumen pernyataan komitmen bersama pimpinan Fakultas Dakwah & Komunikasi untuk selalu memelihara dan meningkatkan standar kualitas tridharma perguruan tinggi secara berkelanjutan.', 'kebijakan_mutu_fdk.pdf')">Pratinjau</button>
+              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('kebijakan_mutu_fdk.pdf', 'Kebijakan Mutu Akademik FDK')">Unduh</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Doc 6 -->
+        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
+          <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=60" alt="Laporan Monev Pengabdian" style="width:100%; height:180px; object-fit:cover;"/>
+          <div class="p-3 flex flex-col" style="flex:1;">
+            <span class="badge badge-warning mb-2">Laporan</span>
+            <h3 class="mb-1 text-lg">Laporan Monev Pengabdian</h3>
+            <p class="muted text-sm mb-3" style="flex:1;">Laporan hasil pemantauan dan evaluasi mutu pelaksanaan pengabdian masyarakat dosen.</p>
+            <div class="flex gap-2">
+              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Laporan Monev Pengabdian', 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=60', 'Rekapitulasi sebaran lokasi pengabdian, tingkat kepuasan mitra pengabdian masyarakat, serta kepatuhan administratif pendanaan luaran pengabdian.', 'monev_pengabdian_masyarakat.pdf')">Pratinjau</button>
+              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('monev_pengabdian_masyarakat.pdf', 'Laporan Monev Pengabdian')">Unduh</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Glassmorphic Modal Preview Window -->
+  <div id="previewModal" class="modal-overlay" onclick="closePreview()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="modalTitle">Judul Dokumen</h3>
+        <button class="modal-close" onclick="closePreview()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <img id="modalImg" src="" alt="Pratinjau" class="document-preview-img" />
+        <h4 class="mb-1">Deskripsi Dokumen</h4>
+        <p id="modalDesc" class="muted text-sm mb-3">Isi deskripsi dokumen lengkap.</p>
+        <div class="flex gap-2" style="border-top: 1px solid var(--border); padding-top: 1.25rem;">
+          <button class="btn btn-outline" style="flex:1;" onclick="closePreview()">Tutup</button>
+          <button class="btn btn-secondary" id="modalDownloadBtn" onclick="">Unduh Berkas (PDF)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container flex flex-wrap justify-between gap-4">
+      <div style="max-width:480px;">
+        <strong class="text-lg block mb-1">Fakultas Dakwah dan Komunikasi &mdash; UIN Alauddin Makassar</strong>
+        <div class="muted">Kampus II: Jalan H. M. Yasin Limpo No. 36 Romang Polong, Somba Opu, Gowa, Sulawesi Selatan</div>
+        <div class="mt-2 text-sm">
+          <strong>Telepon:</strong> <span class="muted">085343803672</span><br/>
+          <strong>Email:</strong> <span class="muted">kpi.fdk@uin-alauddin.ac.id</span>
+        </div>
+      </div>
+      <div class="text-right-mobile mt-2">
+        <strong class="text-lg block">KPM FDK UINAM</strong>
+        <div class="muted text-sm">Dibuat oleh Ariel Usman &copy; 2026</div>
+      </div>
+    </div>
+    <div class="container">
+      <hr class="footer-divider" />
+      <div class="text-center text-xs muted">
+        &copy; 2026 Komite Penjaminan Mutu FDK UIN Alauddin Makassar. Hak Cipta Dilindungi Undang-Undang.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Page Interactivity Scripts for Modal & Download -->
+  <script>
+    // Preview Modal Logic
+    function openPreview(title, imgSrc, desc, filename) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalImg').src = imgSrc;
+      document.getElementById('modalImg').alt = title;
+      document.getElementById('modalDesc').textContent = desc;
+      
+      const downloadBtn = document.getElementById('modalDownloadBtn');
+      downloadBtn.onclick = function() {
+        downloadDoc(filename, title);
+      };
+      
+      document.getElementById('previewModal').classList.add('open');
+    }
+    
+    function closePreview() {
+      document.getElementById('previewModal').classList.remove('open');
+    }
+    
+    // Mock Blob Download Trigger
+    function downloadDoc(filename, title) {
+      // Create a mock PDF content blob
+      const content = `%PDF-1.4\n%... Mock Document Blob for ${title} ...\n` + 
+                      `Fakultas Dakwah & Komunikasi - UIN Alauddin Makassar\n` +
+                      `Komite Penjaminan Mutu (KPM)\n\n` +
+                      `Nama Berkas: ${filename}\n` +
+                      `Judul Dokumen: ${title}\n` +
+                      `Tanggal Unduh: ${new Date().toLocaleDateString('id-ID')}\n\n` +
+                      `Berkas ini diunduh secara resmi dari portal simulasi KPM FDK UINAM.\n` +
+                      `Semua hak cipta dan kepemilikan dokumen tetap berada di bawah wewenang KPM UINAM.`;
+                      
+      const blob = new Blob([content], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+    
+    // Handle Esc key to close modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closePreview();
+      }
+    });
+  </script>
+  
+  <script src="../assets/app.js"></script>
+</body>
+</html>
