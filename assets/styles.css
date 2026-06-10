@@ -1,18 +1,1 @@
-/* Main theme and components */
-:root{--bg:#f7fafc;--card:#ffffff;--muted:#6b7280;--accent:#0ea5a4;--text:#0f172a}
-body{background:var(--bg)}
-.app{display:flex;min-height:100vh}
-.brand p{font-size:0.85rem;margin:0;color:rgba(255,255,255,0.85)}
-.topbar .user{margin-left:auto;margin-right:8px}
-.content{padding:1.25rem}
-h2{margin:0 0 0.25rem 0}
-.card h3{margin:0 0 0.5rem 0}
-.cards article.card{display:flex;flex-direction:column;justify-content:space-between}
-.list li{padding:0.3rem 0;border-bottom:1px dashed #eef2f6}
-.links .btn{margin-top:0.25rem}
-
-/* small screens tweaks */
-@media (max-width:900px){
-  .topbar{position:sticky;top:0;z-index:30}
-  .container{padding:0.75rem}
-}
+body { -webkit-font-smoothing: antialiased; } h1, h2, h3, h4 { color: var(--text); margin-top: 0; } h2 { font-size: 1.75rem; margin-bottom: 1rem; } h3 { font-size: 1.25rem; margin-bottom: 0.5rem; } p { margin-top: 0; margin-bottom: 1rem; color: var(--muted); } article.card img { transition: transform 0.3s ease; } article.card:hover img { transform: scale(1.02); } .card { overflow: hidden; }\n.hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; margin-bottom: 0 !important; } .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
