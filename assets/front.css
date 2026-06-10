@@ -1,0 +1,23 @@
+/* Front page specific styles */
+.hero{position:relative;min-height:60vh;display:flex;align-items:center;color:#fff;background-image:url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600&q=80');background-size:cover;background-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,7,14,0.45), rgba(4,7,14,0.55));}
+.hero-content{position:relative;padding:3rem 1rem;color:#fff}
+.hero h1{font-size:2rem;margin:0 0 .5rem}
+.hero .lead{opacity:0.92;margin-bottom:1rem}
+.hero .actions .btn{margin-right:.5rem}
+
+.site-header{background:#fff;border-bottom:1px solid #eef2f6}
+.site-header .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.site-header .logo strong{font-size:1.1rem}
+.nav-main{display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem}
+.nav-main a{margin:0;text-decoration:none;color:var(--text);padding:.5rem .6rem;border-radius:6px;white-space:nowrap}
+.nav-main a.btn{background:var(--accent);color:#fff}
+.nav-main a.active{background:rgba(14,165,164,0.1)}
+
+.site-footer{background:#f8fafc;padding:1rem 0;margin-top:2rem;border-top:1px solid #eef2f6}
+
+@media (max-width:900px){
+  .nav-main{display:flex;gap:.5rem;flex-wrap:wrap}
+  .hero h1{font-size:1.5rem}
+  .grid.cols-3{grid-template-columns:1fr}
+}
