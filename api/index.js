@@ -10,13 +10,13 @@ const path = require('path');
 const app = express();
 
 // Initialize Supabase Client
-const supabaseUrl = process.env.SUPABASE_URL || 'https://wwbxskxiixlzycaadfpm.supabase.co';
-const supabaseKey = process.env.SUPABASE_KEY || 'sb_publishable_D4d0om54xN8injfxPuRDeg_0SGgEZ3E';
+const supabaseUrl = process.env.SUPABASE_URL || 'https://pryznardziocpsfkgrmw.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY || 'sb_publishable_bOR5wVWACfom-X22dq8pZQ_EZTllHQo';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Remote Database Setup Route
 app.get('/api/setup-db', async (req, res) => {
-  const connectionString = 'postgresql://postgres:h7T%2BdRdT%2BXuZJ_y@db.wwbxskxiixlzycaadfpm.supabase.co:6543/postgres?sslmode=require';
+  const connectionString = 'postgresql://postgres:h7T%2BdRdT%2BXuZJ_y@db.pryznardziocpsfkgrmw.supabase.co:6543/postgres?sslmode=require';
   const client = new Client({
     connectionString: connectionString,
     ssl: { rejectUnauthorized: false }
