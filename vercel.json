@@ -1,5 +1,10 @@
 {
   "outputDirectory": ".",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "data/schema.sql"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/:path*",

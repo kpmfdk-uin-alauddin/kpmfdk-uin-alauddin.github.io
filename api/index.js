@@ -3,6 +3,9 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const { createClient } = require('@supabase/supabase-js');
+const { Client } = require('pg');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 
@@ -10,6 +13,27 @@ const app = express();
 const supabaseUrl = process.env.SUPABASE_URL || 'https://wwbxskxiixlzycaadfpm.supabase.co';
 const supabaseKey = process.env.SUPABASE_KEY || 'sb_publishable_D4d0om54xN8injfxPuRDeg_0SGgEZ3E';
 const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Remote Database Setup Route
+app.get('/api/setup-db', async (req, res) => {
+  const connectionString = 'postgresql://postgres:h7T%2BdRdT%2BXuZJ_y@db.wwbxskxiixlzycaadfpm.supabase.co:6543/postgres?sslmode=require';
+  const client = new Client({
+    connectionString: connectionString,
+    ssl: { rejectUnauthorized: false }
+  });
+
+  try {
+    await client.connect();
+    const sqlPath = path.join(__dirname, '..', 'data', 'schema.sql');
+    const sql = fs.readFileSync(sqlPath, 'utf8');
+    await client.query(sql);
+    res.send('Database schema initialized successfully!');
+  } catch (err) {
+    res.status(500).send('Error initializing database: ' + err.message);
+  } finally {
+    await client.end();
+  }
+});
 
 // Middleware
 app.use(bodyParser.json());
