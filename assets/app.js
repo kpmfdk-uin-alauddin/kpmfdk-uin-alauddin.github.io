@@ -146,6 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
   async function initHeroSlider() {
     const hero = document.getElementById('heroSlider');
     const heroContent = document.getElementById('heroContent');
+    const prevBtn = document.getElementById('prevSlideBtn');
+    const nextBtn = document.getElementById('nextSlideBtn');
+    const dotsContainer = document.getElementById('sliderDots');
     
     // Only run on home page
     const path = location.pathname.toLowerCase();
@@ -160,14 +163,44 @@ document.addEventListener('DOMContentLoaded', () => {
       if (slides.length === 0) return;
       
       let index = 0;
+      let sliderInterval = null;
       
       // Initial style override for fade effect
       heroContent.style.transition = 'opacity 0.4s ease-in-out';
       hero.style.transition = 'background-image 0.8s ease-in-out';
       
+      // Generate dot indicators dynamically
+      if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        slides.forEach((_, idx) => {
+          const dot = document.createElement('button');
+          dot.className = 'slider-dot' + (idx === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', `Slide ${idx + 1}`);
+          dot.addEventListener('click', () => {
+            navigateSlider(() => {
+              index = idx;
+            });
+          });
+          dotsContainer.appendChild(dot);
+        });
+      }
+      
+      function updateDots(idx) {
+        if (!dotsContainer) return;
+        const dots = dotsContainer.querySelectorAll('.slider-dot');
+        dots.forEach((dot, dIdx) => {
+          if (dIdx === idx) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+      
       function showSlide(idx) {
         const slide = slides[idx];
         heroContent.style.opacity = 0;
+        updateDots(idx);
         
         setTimeout(() => {
           hero.style.backgroundImage = `url('${slide.image}')`;
@@ -183,14 +216,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 400);
       }
       
+      // Helper function to manage manual interactions
+      function navigateSlider(actionFn) {
+        actionFn();
+        showSlide(index);
+        resetTimer();
+      }
+      
+      function startTimer() {
+        sliderInterval = setInterval(() => {
+          index = (index + 1) % slides.length;
+          showSlide(index);
+        }, 6000);
+      }
+      
+      function resetTimer() {
+        if (sliderInterval) {
+          clearInterval(sliderInterval);
+        }
+        startTimer();
+      }
+      
+      // Hook up navigation buttons
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          navigateSlider(() => {
+            index = (index - 1 + slides.length) % slides.length;
+          });
+        });
+      }
+      
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          navigateSlider(() => {
+            index = (index + 1) % slides.length;
+          });
+        });
+      }
+      
       // Load initial slide immediately
       showSlide(0);
-      
-      // Rotation Interval
-      setInterval(() => {
-        index = (index + 1) % slides.length;
-        showSlide(index);
-      }, 6000);
+      startTimer();
       
     } catch (err) {
       console.warn('Slider engine offline, static fallback loaded: ', err);

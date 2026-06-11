@@ -142,7 +142,7 @@
   "settings": {
     "siteTitle": "KPM FDK UINAM",
     "siteSub": "Fakultas Dakwah & Komunikasi",
-    "logo": "./assets/logoSementaraKessos.png",
+    "logo": "./assets/logoKpm.svg",
     "navLinks": [
       { "label": "Beranda", "url": "/index.html" },
       { "label": "Anggota", "url": "/anggota/index.html" },

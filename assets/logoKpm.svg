@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#023c2a" />
+      <stop offset="100%" stop-color="#054a34" />
+    </linearGradient>
+    <!-- Gold Trim Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b8860b" />
+      <stop offset="50%" stop-color="#ffd700" />
+      <stop offset="100%" stop-color="#daa520" />
+    </linearGradient>
+  </defs>
+
+  <!-- Hexagonal Shield Outline -->
+  <polygon points="50,5 90,25 90,75 50,95 10,75 10,25" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="4" stroke-linejoin="round" />
+
+  <!-- Inner Gold Shield Line -->
+  <polygon points="50,11 84,28 84,72 50,89 16,72 16,28" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linejoin="round" opacity="0.7" />
+
+  <!-- Scales of Justice / Quality Assurance -->
+  <!-- Beam -->
+  <line x1="32" y1="45" x2="68" y2="45" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" />
+  <!-- Stand -->
+  <path d="M50,45 L50,68 M42,68 L58,68" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" />
+  <circle cx="50" cy="40" r="3" fill="url(#goldGrad)" />
+  <!-- Left Pan -->
+  <line x1="32" y1="45" x2="25" y2="58" stroke="url(#goldGrad)" stroke-width="1.5" />
+  <line x1="32" y1="45" x2="39" y2="58" stroke="url(#goldGrad)" stroke-width="1.5" />
+  <path d="M23,58 C23,63 41,63 41,58 Z" fill="url(#goldGrad)" />
+  <!-- Right Pan -->
+  <line x1="68" y1="45" x2="61" y2="58" stroke="url(#goldGrad)" stroke-width="1.5" />
+  <line x1="68" y1="45" x2="75" y2="58" stroke="url(#goldGrad)" stroke-width="1.5" />
+  <path d="M59,58 C59,63 77,63 77,58 Z" fill="url(#goldGrad)" />
+
+  <!-- Open Book representation at the bottom -->
+  <path d="M30,73 C38,70 48,74 50,75 C52,74 62,70 70,73 M30,76 C38,73 48,77 50,78 C52,77 62,73 70,76" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="50" y1="75" x2="50" y2="78" stroke="url(#goldGrad)" stroke-width="2" />
+</svg>

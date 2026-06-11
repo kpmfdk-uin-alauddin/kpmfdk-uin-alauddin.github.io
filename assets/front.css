@@ -374,3 +374,77 @@ body.show-focus-outline *:focus {
     color: #555;
   }
 }
+
+/* Hero Slider Manual Navigation Styles */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(2, 60, 42, 0.4);
+  border: 2px solid rgba(255,255,255,0.3);
+  color: #ffffff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 15;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+.slider-btn:hover {
+  background: var(--primary);
+  border-color: var(--secondary);
+  color: var(--secondary);
+  box-shadow: var(--shadow-md);
+}
+.slider-btn.prev-btn {
+  left: 2rem;
+}
+.slider-btn.next-btn {
+  right: 2rem;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 15;
+}
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.slider-dot.active {
+  background: var(--secondary);
+  transform: scale(1.25);
+  box-shadow: 0 0 6px var(--secondary);
+}
+
+@media (max-width: 768px) {
+  .slider-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  .slider-btn.prev-btn {
+    left: 0.75rem;
+  }
+  .slider-btn.next-btn {
+    right: 0.75rem;
+  }
+  .slider-dots {
+    bottom: 1.25rem;
+  }
+}
