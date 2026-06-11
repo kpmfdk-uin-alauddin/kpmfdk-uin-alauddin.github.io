@@ -44,7 +44,7 @@
     .modal-box {
       background: var(--card);
       width: 90%;
-      max-width: 650px;
+      max-width: 750px;
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-xl);
       border: 1px solid rgba(5,74,52,0.08);
@@ -83,16 +83,8 @@
     }
     .modal-body {
       padding: 1.75rem;
-      max-height: 70vh;
+      max-height: 80vh;
       overflow-y: auto;
-    }
-    .document-preview-img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: var(--radius-md);
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
     }
     
     /* Search Bar styling */
@@ -122,6 +114,23 @@
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(5,74,52,0.1);
       background-color: #ffffff;
+    }
+    
+    /* Document Preview Frame */
+    .drive-iframe-wrapper {
+      width: 100%;
+      height: 400px;
+      margin-bottom: 1.25rem;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background-color: #e2e8f0;
+      position: relative;
+    }
+    .drive-iframe-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
@@ -174,97 +183,15 @@
     <!-- Grid of Documents -->
     <section>
       <h2>Daftar Dokumen Resmi</h2>
-      <p class="muted mb-3">Klik opsi untuk melihat pratinjau dokumen atau unduh berkas secara langsung.</p>
+      <p class="muted mb-3">Klik opsi untuk melihat pratinjau dokumen dari Google Drive secara langsung atau unduh berkas.</p>
       
-      <div class="grid-responsive cols-3-md">
-        <!-- Doc 1 -->
-        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
-          <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=60" alt="Buku Standar SPMI FDK" style="width:100%; height:180px; object-fit:cover;"/>
-          <div class="p-3 flex flex-col" style="flex:1;">
-            <span class="badge badge-success mb-2">Kebijakan</span>
-            <h3 class="mb-1 text-lg">Buku Standar SPMI FDK 2026</h3>
-            <p class="muted text-sm mb-3" style="flex:1;">Pedoman Sistem Penjaminan Mutu Internal (SPMI) yang menjadi rujukan implementasi layanan tridharma fakultas.</p>
-            <div class="flex gap-2">
-              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Buku Standar SPMI FDK 2026', 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=60', 'Buku Standar Sistem Penjaminan Mutu Internal (SPMI) Fakultas Dakwah & Komunikasi tahun 2026 memuat 24 standar utama pendidikan, penelitian, pengabdian, serta standar tata pamong internal yang wajib dilaksanakan oleh seluruh civitas akademika.', 'standar_spmi_fdk_2026.pdf')">Pratinjau</button>
-              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('standar_spmi_fdk_2026.pdf', 'Buku Standar SPMI FDK 2026')">Unduh</button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Doc 2 -->
-        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
-          <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=60" alt="Buku Panduan AMI FDK" style="width:100%; height:180px; object-fit:cover;"/>
-          <div class="p-3 flex flex-col" style="flex:1;">
-            <span class="badge badge-warning mb-2">Panduan</span>
-            <h3 class="mb-1 text-lg">Buku Panduan AMI 2026</h3>
-            <p class="muted text-sm mb-3" style="flex:1;">Panduan teknis bagi auditor dan auditee dalam menyelenggarakan Audit Mutu Internal tahunan prodi.</p>
-            <div class="flex gap-2">
-              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Buku Panduan AMI 2026', 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=60', 'Buku panduan Audit Mutu Internal (AMI) memuat alur, jadwal, instrumen penilaian kepatuhan, format laporan temuan audit, serta pedoman tindakan koreksi pasca-audit prodi.', 'panduan_ami_2026.pdf')">Pratinjau</button>
-              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('panduan_ami_2026.pdf', 'Buku Panduan AMI 2026')">Unduh</button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Doc 3 -->
-        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
-          <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=60" alt="Kuesioner Kepuasan Layanan" style="width:100%; height:180px; object-fit:cover;"/>
-          <div class="p-3 flex flex-col" style="flex:1;">
-            <span class="badge badge-info mb-2">Instrumen</span>
-            <h3 class="mb-1 text-lg">Kuesioner Kepuasan Layanan</h3>
-            <p class="muted text-sm mb-3" style="flex:1;">Instrumen survei resmi untuk mengukur indeks kepuasan mahasiswa, dosen, dan tenaga kependidikan.</p>
-            <div class="flex gap-2">
-              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Kuesioner Kepuasan Layanan', 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=60', 'Formulir kuesioner terstandarisasi untuk menjaring umpan balik civitas akademika terkait keefektifan perkuliahan, keramahan layanan tata usaha, serta kelayakan fasilitas kelas.', 'kuesioner_kepuasan_layanan.pdf')">Pratinjau</button>
-              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('kuesioner_kepuasan_layanan.pdf', 'Kuesioner Kepuasan Layanan')">Unduh</button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Doc 4 -->
-        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=60" alt="SOP Evaluasi Pembelajaran" style="width:100%; height:180px; object-fit:cover;"/>
-          <div class="p-3 flex flex-col" style="flex:1;">
-            <span class="badge badge-success mb-2">SOP</span>
-            <h3 class="mb-1 text-lg">SOP Evaluasi Pembelajaran</h3>
-            <p class="muted text-sm mb-3" style="flex:1;">Standar Operasional Prosedur pelaksanaan monitoring perkuliahan tengah dan akhir semester.</p>
-            <div class="flex gap-2">
-              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('SOP Evaluasi Pembelajaran', 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=60', 'Alur koordinasi, jadwal validasi kelayakan soal ujian oleh gugus penjaminan mutu prodi, serta mekanisme monitoring kehadiran kelas dosen.', 'sop_evaluasi_pembelajaran.pdf')">Pratinjau</button>
-              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('sop_evaluasi_pembelajaran.pdf', 'SOP Evaluasi Pembelajaran')">Unduh</button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Doc 5 -->
-        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
-          <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?w=800&q=60" alt="Kebijakan Mutu FDK" style="width:100%; height:180px; object-fit:cover;"/>
-          <div class="p-3 flex flex-col" style="flex:1;">
-            <span class="badge badge-success mb-2">Kebijakan</span>
-            <h3 class="mb-1 text-lg">Kebijakan Mutu Akademik FDK</h3>
-            <p class="muted text-sm mb-3" style="flex:1;">Dokumen pernyataan dewan pimpinan fakultas mengenai visi, arah, dan komitmen penjaminan mutu.</p>
-            <div class="flex gap-2">
-              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Kebijakan Mutu Akademik FDK', 'https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?w=800&q=60', 'Dokumen pernyataan komitmen bersama pimpinan Fakultas Dakwah & Komunikasi untuk selalu memelihara dan meningkatkan standar kualitas tridharma perguruan tinggi secara berkelanjutan.', 'kebijakan_mutu_fdk.pdf')">Pratinjau</button>
-              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('kebijakan_mutu_fdk.pdf', 'Kebijakan Mutu Akademik FDK')">Unduh</button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Doc 6 -->
-        <article class="card p-0 overflow-hidden hover-lift flex flex-col" data-searchable>
-          <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=60" alt="Laporan Monev Pengabdian" style="width:100%; height:180px; object-fit:cover;"/>
-          <div class="p-3 flex flex-col" style="flex:1;">
-            <span class="badge badge-warning mb-2">Laporan</span>
-            <h3 class="mb-1 text-lg">Laporan Monev Pengabdian</h3>
-            <p class="muted text-sm mb-3" style="flex:1;">Laporan hasil pemantauan dan evaluasi mutu pelaksanaan pengabdian masyarakat dosen.</p>
-            <div class="flex gap-2">
-              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('Laporan Monev Pengabdian', 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=60', 'Rekapitulasi sebaran lokasi pengabdian, tingkat kepuasan mitra pengabdian masyarakat, serta kepatuhan administratif pendanaan luaran pengabdian.', 'monev_pengabdian_masyarakat.pdf')">Pratinjau</button>
-              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('monev_pengabdian_masyarakat.pdf', 'Laporan Monev Pengabdian')">Unduh</button>
-            </div>
-          </div>
-        </article>
+      <div class="grid-responsive cols-3-md" id="docsGrid">
+        <!-- Hydrated dynamically from backend API -->
       </div>
     </section>
   </main>
 
-  <!-- Glassmorphic Modal Preview Window -->
+  <!-- Glassmorphic Modal Preview Window (Google Drive Iframe support) -->
   <div id="previewModal" class="modal-overlay" onclick="closePreview()">
     <div class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
@@ -272,7 +199,10 @@
         <button class="modal-close" onclick="closePreview()">&times;</button>
       </div>
       <div class="modal-body">
-        <img id="modalImg" src="" alt="Pratinjau" class="document-preview-img" />
+        <!-- Secure Google Drive Viewer Iframe -->
+        <div class="drive-iframe-wrapper">
+          <iframe id="modalDriveFrame" src="" allow="autoplay"></iframe>
+        </div>
         <h4 class="mb-1">Deskripsi Dokumen</h4>
         <p id="modalDesc" class="muted text-sm mb-3">Isi deskripsi dokumen lengkap.</p>
         <div class="flex gap-2" style="border-top: 1px solid var(--border); padding-top: 1.25rem;">
@@ -308,11 +238,82 @@
 
   <!-- Page Interactivity Scripts for Modal & Download -->
   <script>
+    let allDocuments = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDocuments();
+      
+      // Local filtering setup
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        renderDocuments(allDocuments.filter(d => 
+          d.title.toLowerCase().includes(query) || 
+          d.category.toLowerCase().includes(query) || 
+          d.description.toLowerCase().includes(query)
+        ));
+      });
+    });
+
+    async function loadDocuments() {
+      try {
+        const res = await fetch('/api/documents');
+        allDocuments = await res.json();
+        renderDocuments(allDocuments);
+      } catch (err) {
+        console.error('Error fetching documents:', err);
+      }
+    }
+
+    function renderDocuments(list) {
+      const grid = document.getElementById('docsGrid');
+      grid.innerHTML = '';
+      
+      if (list.length === 0) {
+        grid.innerHTML = '<div class="card p-4 text-center muted" style="grid-column: 1/-1;">Tidak ada dokumen ditemukan.</div>';
+        return;
+      }
+      
+      list.forEach(item => {
+        const article = document.createElement('article');
+        article.className = 'card p-0 overflow-hidden hover-lift flex flex-col';
+        article.setAttribute('data-searchable', '');
+        
+        article.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" style="width:100%; height:180px; object-fit:cover;"/>
+          <div class="p-3 flex flex-col" style="flex:1;">
+            <span class="badge ${item.badge || 'badge-success'} mb-2">${item.category}</span>
+            <h3 class="mb-1 text-lg">${item.title}</h3>
+            <p class="muted text-sm mb-3" style="flex:1;">${item.description}</p>
+            <div class="flex gap-2">
+              <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('${escapeJs(item.title)}', '${item.driveUrl}', '${escapeJs(item.description)}', '${item.filename}')">Pratinjau</button>
+              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('${item.filename}', '${escapeJs(item.title)}')">Unduh</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(article);
+      });
+    }
+
+    // Convert drive link format from sharing URL to preview embed link
+    function getCleanDrivePreviewUrl(rawUrl) {
+      if (!rawUrl) return '';
+      // If it contains /file/d/ID/view, convert it to /file/d/ID/preview
+      let cleanUrl = rawUrl;
+      const fileIdRegex = /\/file\/d\/([a-zA-Z0-9-_]+)/;
+      const match = rawUrl.match(fileIdRegex);
+      if (match && match[1]) {
+        cleanUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
+      }
+      return cleanUrl;
+    }
+
     // Preview Modal Logic
-    function openPreview(title, imgSrc, desc, filename) {
+    function openPreview(title, driveUrl, desc, filename) {
       document.getElementById('modalTitle').textContent = title;
-      document.getElementById('modalImg').src = imgSrc;
-      document.getElementById('modalImg').alt = title;
+      
+      const cleanUrl = getCleanDrivePreviewUrl(driveUrl);
+      document.getElementById('modalDriveFrame').src = cleanUrl;
+      
       document.getElementById('modalDesc').textContent = desc;
       
       const downloadBtn = document.getElementById('modalDownloadBtn');
@@ -325,6 +326,8 @@
     
     function closePreview() {
       document.getElementById('previewModal').classList.remove('open');
+      // Stop iframe player/media loading on close
+      document.getElementById('modalDriveFrame').src = '';
     }
     
     // Mock Blob Download Trigger
@@ -336,7 +339,7 @@
                       `Nama Berkas: ${filename}\n` +
                       `Judul Dokumen: ${title}\n` +
                       `Tanggal Unduh: ${new Date().toLocaleDateString('id-ID')}\n\n` +
-                      `Berkas ini diunduh secara resmi dari portal simulasi KPM FDK UINAM.\n` +
+                      `Berkas ini diunduh secara resmi dari portal KPM FDK UINAM.\n` +
                       `Semua hak cipta dan kepemilikan dokumen tetap berada di bawah wewenang KPM UINAM.`;
                       
       const blob = new Blob([content], { type: 'application/pdf' });
@@ -359,6 +362,10 @@
         closePreview();
       }
     });
+
+    function escapeJs(str) {
+      return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
+    }
   </script>
   
   <script src="../assets/app.js"></script>

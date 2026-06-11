@@ -1,6 +1,6 @@
-// App interactivity & Responsive Menu Behaviors
+// App interactivity, Responsive Menu & Dynamic API Hydration
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile Menu Toggle
+  // 1. Mobile Menu Toggle
   const menuToggle = document.getElementById('menuToggle');
   const navMain = document.getElementById('navMain');
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Smooth scroll for anchor links
+  // 2. Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
@@ -44,30 +44,221 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Active nav link highlighting (robust for server and file:// protocols)
-  const currentPath = location.pathname.toLowerCase();
-  document.querySelectorAll('.nav-link').forEach(link => {
+  // 3. Dynamic Site Settings Hydration (Navbar and Footer configuration)
+  async function hydrateSiteSettings() {
     try {
-      const linkUrl = new URL(link.href, window.location.href);
-      const linkPath = linkUrl.pathname.toLowerCase();
+      const res = await fetch('/api/site-settings');
+      if (!res.ok) return;
+      const settings = await res.json();
       
-      // Check if current path matches or contains link path (for sub-pages)
-      const isActive = currentPath === linkPath || 
-                       (currentPath.endsWith('/') && linkPath.endsWith('index.html') && currentPath.replace(/\/$/, '') === linkPath.substring(0, linkPath.lastIndexOf('/'))) ||
-                       (currentPath.includes('/anggota/') && linkPath.includes('/anggota/')) ||
-                       (currentPath.includes('/akreditasi/') && linkPath.includes('/akreditasi/')) ||
-                       (currentPath.includes('/laporan/') && linkPath.includes('/laporan/')) ||
-                       (currentPath.includes('/dokumen/') && linkPath.includes('/dokumen/'));
-
-      if (isActive) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
+      // Hydrate Navbar brand
+      document.querySelectorAll('.logo strong').forEach(el => el.textContent = settings.siteTitle);
+      document.querySelectorAll('.logo .muted').forEach(el => el.textContent = settings.siteSub);
+      if (settings.logo) {
+        document.querySelectorAll('.logo img').forEach(img => {
+          // Adjust logo prefix for subdirectories
+          const path = location.pathname.toLowerCase();
+          let prefix = './';
+          if (path.includes('/akreditasi/') || path.includes('/anggota/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
+            prefix = '../';
+          }
+          img.src = settings.logo.startsWith('./') ? prefix + settings.logo.substring(2) : settings.logo;
+        });
       }
+      
+      // Hydrate Navbar menu links dynamically
+      if (navMain) {
+        const loginBtn = navMain.querySelector('.btn');
+        const loginUrl = loginBtn ? loginBtn.getAttribute('href') : '../masuk/index.html';
+        const loginText = loginBtn ? loginBtn.textContent : 'Masuk';
+        
+        navMain.innerHTML = '';
+        
+        const path = location.pathname.toLowerCase();
+        let prefix = './';
+        if (path.includes('/akreditasi/') || path.includes('/anggota/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
+          prefix = '../';
+        }
+        
+        settings.navLinks.forEach(link => {
+          const a = document.createElement('a');
+          a.className = 'nav-link';
+          let targetUrl = link.url;
+          if (targetUrl.startsWith('/')) {
+            targetUrl = prefix + targetUrl.substring(1);
+          }
+          a.href = targetUrl;
+          a.textContent = link.label;
+          
+          // Check active state
+          const currentPath = location.pathname.toLowerCase();
+          const linkUrl = new URL(a.href, window.location.href);
+          const linkPath = linkUrl.pathname.toLowerCase();
+          const isActive = currentPath === linkPath || 
+                           (currentPath.endsWith('/') && linkPath.endsWith('index.html') && currentPath.replace(/\/$/, '') === linkPath.substring(0, linkPath.lastIndexOf('/'))) ||
+                           (currentPath.includes('/anggota/') && linkPath.includes('/anggota/')) ||
+                           (currentPath.includes('/akreditasi/') && linkPath.includes('/akreditasi/')) ||
+                           (currentPath.includes('/laporan/') && linkPath.includes('/laporan/')) ||
+                           (currentPath.includes('/dokumen/') && linkPath.includes('/dokumen/'));
+          
+          if (isActive) {
+            a.classList.add('active');
+          }
+          navMain.appendChild(a);
+        });
+        
+        // Re-append login button
+        if (loginBtn) {
+          const btn = document.createElement('a');
+          btn.className = 'btn btn-secondary';
+          btn.href = loginUrl;
+          btn.textContent = loginText;
+          navMain.appendChild(btn);
+        }
+      }
+      
+      // Hydrate Footer Address, Phone, Email & Copyright
+      const footer = document.querySelector('.site-footer');
+      if (footer && settings.footer) {
+        const addressEl = footer.querySelector('.muted');
+        if (addressEl) addressEl.textContent = settings.footer.address;
+        
+        const contactEl = footer.querySelector('.mt-2');
+        if (contactEl) {
+          contactEl.innerHTML = `
+            <strong>Telepon:</strong> <span class="muted">${settings.footer.phone}</span><br/>
+            <strong>Email:</strong> <span class="muted">${settings.footer.email}</span>
+          `;
+        }
+        
+        const copyrightEl = footer.querySelector('.text-right-mobile .muted');
+        if (copyrightEl) {
+          copyrightEl.innerHTML = settings.footer.copyright;
+        }
+      }
+      
     } catch (err) {
-      // Fallback
+      console.warn('Fallback to static HTML layout elements: ', err);
     }
-  });
+  }
+
+  // 4. Hero Slider Engine (Homepage only)
+  async function initHeroSlider() {
+    const hero = document.getElementById('heroSlider');
+    const heroContent = document.getElementById('heroContent');
+    
+    // Only run on home page
+    const path = location.pathname.toLowerCase();
+    if (!hero || !heroContent || path.includes('/berita-') || path.includes('/akreditasi/') || path.includes('/anggota/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
+      return;
+    }
+    
+    try {
+      const res = await fetch('/api/slides');
+      if (!res.ok) return;
+      const slides = await res.json();
+      if (slides.length === 0) return;
+      
+      let index = 0;
+      
+      // Initial style override for fade effect
+      heroContent.style.transition = 'opacity 0.4s ease-in-out';
+      hero.style.transition = 'background-image 0.8s ease-in-out';
+      
+      function showSlide(idx) {
+        const slide = slides[idx];
+        heroContent.style.opacity = 0;
+        
+        setTimeout(() => {
+          hero.style.backgroundImage = `url('${slide.image}')`;
+          heroContent.innerHTML = `
+            <span class="badge badge-secondary mb-2">Penjaminan Mutu Internal</span>
+            <h1>${slide.title}</h1>
+            <p class="lead">${slide.lead}</p>
+            <div class="actions">
+              <a class="btn btn-secondary shadow" href="${slide.buttonLink}">${slide.buttonText}</a>
+            </div>
+          `;
+          heroContent.style.opacity = 1;
+        }, 400);
+      }
+      
+      // Load initial slide immediately
+      showSlide(0);
+      
+      // Rotation Interval
+      setInterval(() => {
+        index = (index + 1) % slides.length;
+        showSlide(index);
+      }, 6000);
+      
+    } catch (err) {
+      console.warn('Slider engine offline, static fallback loaded: ', err);
+    }
+  }
+
+  // 5. News Hydration (Homepage only)
+  async function hydrateNews() {
+    const newsContainer = document.getElementById('dynamicNewsGrid');
+    const sidebarList = document.getElementById('sidebarNewsList');
+    
+    // Only run on homepage
+    const path = location.pathname.toLowerCase();
+    if (!newsContainer || path.includes('/berita-') || path.includes('/akreditasi/') || path.includes('/anggota/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
+      return;
+    }
+    
+    try {
+      const res = await fetch('/api/news');
+      if (!res.ok) return;
+      const news = await res.json();
+      if (news.length === 0) return;
+      
+      // Hydrate Main Grid
+      newsContainer.innerHTML = '';
+      news.forEach(item => {
+        const a = document.createElement('a');
+        a.href = item.link;
+        a.className = 'block mb-3 hover-lift card p-0 overflow-hidden';
+        a.style.color = 'inherit';
+        
+        a.innerHTML = `
+          <article>
+            <img src="${item.image}" alt="${item.title}" style="width:100%; height:320px; object-fit:cover;"/>
+            <div class="p-3">
+              <span class="badge ${item.badge || 'badge-success'} mb-2">${item.category}</span>
+              <h3 class="mb-1">${item.title}</h3>
+              <p class="muted text-sm mb-0">${item.summary}</p>
+            </div>
+          </article>
+        `;
+        newsContainer.appendChild(a);
+      });
+      
+      // Hydrate Sidebar List
+      if (sidebarList) {
+        sidebarList.innerHTML = '';
+        news.slice(0, 5).forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="${item.link}">${item.title}</a>`;
+          sidebarList.appendChild(li);
+        });
+        
+        // Add link back to home
+        const liBack = document.createElement('li');
+        liBack.innerHTML = `<a href="./index.html">Kembali ke Beranda</a>`;
+        sidebarList.appendChild(liBack);
+      }
+      
+    } catch (err) {
+      console.warn('News API offline: ', err);
+    }
+  }
+
+  // Run Hydrations
+  hydrateSiteSettings();
+  initHeroSlider();
+  hydrateNews();
 
   // Dashboard Data searchable list
   const searchInput = document.getElementById('searchInput');
@@ -122,13 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const breadcrumb = document.querySelector('.breadcrumb');
     
     if (breadcrumb && title !== 'KPM') {
-      // Determine directory depth
       let relativePrefix = '../';
       if (path.includes('/anggota/') || path.includes('/akreditasi/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
         relativePrefix = '../';
       }
       if (path.split('/').filter(Boolean).length > 2) {
-        // Nested subpages within directories
         relativePrefix = '../../';
       }
 

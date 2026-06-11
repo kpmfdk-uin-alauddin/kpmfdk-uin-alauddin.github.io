@@ -3,138 +3,888 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dasbor Admin CMS | KPM FDK UINAM</title>
   
-  <!-- SEO Meta Tags -->
-  <title>Pengaturan Sistem | KPM FDK UINAM</title>
-  <meta name="description" content="Dashboard pengaturan sistem penjaminan mutu internal Komite Penjaminan Mutu (KPM) FDK UIN Alauddin Makassar." />
-  <meta name="author" content="Ariel Usman" />
-  <link rel="canonical" href="https://kpmfdk-uin-alauddin.github.io/settings/index.html" />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Pengaturan Sistem | KPM FDK UINAM" />
-  <meta property="og:description" content="Kelola preferensi notifikasi, hak akses anggota, dan jadwal evaluasi mutu." />
-  <meta property="og:image" content="../assets/logoSementaraKessos.png" />
-
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../assets/tailwhip.css" />
   <link rel="stylesheet" href="../assets/styles.css" />
   <link rel="stylesheet" href="../assets/front.css" />
+  <link rel="stylesheet" href="../assets/cms.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a href="../index.html" class="logo flex items-center gap-2">
-        <img src="../assets/logoSementaraKessos.png" alt="Logo UINAM" style="height:48px; width:auto; object-fit:contain"/>
-        <div>
-          <strong class="text-lg block">KPM FDK UINAM</strong>
-          <div class="muted text-xs">Fakultas Dakwah &amp; Komunikasi</div>
+  
+  <div class="cms-container" id="cmsApp" style="display: none;">
+    <!-- CMS Navigation Sidebar -->
+    <aside class="cms-sidebar">
+      <div class="cms-brand">
+        <img id="cmsBrandLogo" src="../assets/logoSementaraKessos.png" alt="Logo UINAM" />
+        <div class="cms-brand-text">
+          <h2 id="cmsBrandTitle">KPM FDK UINAM</h2>
+          <span>Dashboard CMS</span>
         </div>
-      </a>
-      <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
-      <nav id="navMain" class="nav-main ml-auto">
-        <a href="../index.html" class="nav-link">Beranda</a>
-        <a href="../anggota/index.html" class="nav-link">Anggota</a>
-        <a href="../akreditasi/index.html" class="nav-link">Akreditasi</a>
-        <a href="../laporan/index.html" class="nav-link">Laporan</a>
-        <a href="../dokumen/index.html" class="nav-link">Dokumen</a>
-        <a href="../masuk/index.html" class="btn btn-secondary">Masuk</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="container hero-content">
-      <span class="badge badge-secondary mb-2">Panel Admin</span>
-      <h1>Pengaturan Sistem</h1>
-      <p class="lead">Konfigurasi preferensi notifikasi rapat, hak akses kelola dokumen akreditasi, serta penentuan timeline jadwal audit internal prodi.</p>
-      <div class="actions">
-        <a class="btn btn-secondary shadow" href="../index.html">Kembali ke Beranda</a>
-        <a class="btn btn-ghost" href="#news">Lihat Menu Pengaturan</a>
       </div>
-    </div>
-  </section>
+      
+      <div class="cms-user-badge">
+        <span class="muted text-xs">Masuk sebagai:</span>
+        <strong id="cmsUsername">Nama Pengguna</strong>
+        <span class="badge badge-secondary mt-1" id="cmsUserRole">Role</span>
+      </div>
+      
+      <ul class="cms-menu">
+        <li class="cms-menu-item active" id="menu-dash">
+          <a onclick="switchTab('dash')"><span>🏠</span> <span>Dashboard</span></a>
+        </li>
+        <li class="cms-menu-item" id="menu-news">
+          <a onclick="switchTab('news')"><span>📰</span> <span>Berita & Artikel</span></a>
+        </li>
+        <li class="cms-menu-item" id="menu-docs">
+          <a onclick="switchTab('docs')"><span>📂</span> <span>Dokumen Mutu</span></a>
+        </li>
+        <li class="cms-menu-item kpm-only" id="menu-slider">
+          <a onclick="switchTab('slider')"><span>carousel</span> <span>Hero Slider</span></a>
+        </li>
+        <li class="cms-menu-item kpm-only" id="menu-site">
+          <a onclick="switchTab('site')"><span>⚙️</span> <span>Pengaturan Web</span></a>
+        </li>
+        <li class="cms-menu-item kpm-only" id="menu-users">
+          <a onclick="switchTab('users')"><span>👥</span> <span>Kelola Pengguna</span></a>
+        </li>
+      </ul>
+      
+      <div class="cms-menu-footer">
+        <button class="btn btn-outline w-full py-1 text-xs" onclick="logout()">Keluar</button>
+      </div>
+    </aside>
 
-  <!-- Breadcrumbs -->
-  <div class="container mt-3">
-    <div class="breadcrumb-nav">
-      <div class="breadcrumb"></div>
-    </div>
+    <!-- CMS Main Window -->
+    <main class="cms-main">
+      <header class="cms-header">
+        <div class="cms-header-title">
+          <h1 id="cmsPanelTitle">Dashboard Ringkasan</h1>
+        </div>
+        <div class="cms-header-actions">
+          <a href="../index.html" class="btn btn-outline" target="_blank">Lihat Website &rarr;</a>
+        </div>
+      </header>
+
+      <div class="cms-content">
+        
+        <!-- ==================== 1. DASHBOARD PANEL ==================== -->
+        <div class="cms-panel active" id="panel-dash">
+          <div class="cms-stats-grid">
+            <div class="cms-stat-card">
+              <h3>Total Berita & Kegiatan</h3>
+              <div class="cms-stat-value" id="stat-news-count">0</div>
+            </div>
+            <div class="cms-stat-card accent-gold">
+              <h3>Total Dokumen Mutu</h3>
+              <div class="cms-stat-value" id="stat-docs-count">0</div>
+            </div>
+            <div class="cms-stat-card">
+              <h3>Tingkat Otoritas</h3>
+              <div class="cms-stat-value text-xl" style="font-size:1.5rem; line-height:1.4; margin-top:0.5rem;" id="stat-user-role">Otoritas</div>
+            </div>
+          </div>
+          
+          <div class="card p-4">
+            <h3>Selamat Datang di Portal CMS KPM FDK UINAM</h3>
+            <p class="muted">Di sini Anda dapat mengelola konten portal penjaminan mutu secara langsung sesuai dengan tingkat otorisasi yang Anda miliki.</p>
+            <div style="border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1.5rem;">
+              <h4 class="mb-2">Panduan Cepat Hak Akses:</h4>
+              <ul class="muted text-sm" style="line-height:1.8;">
+                <li><strong>Admin KPM (Highest):</strong> Memiliki kontrol penuh atas seluruh fitur, termasuk mengedit Navbar, Footer, Slides, dan Akun Pengguna.</li>
+                <li><strong>Admin GPM (Gugus Mutu):</strong> Dapat menambah, mengedit, dan menghapus Berita Utama serta Dokumen.</li>
+                <li><strong>Admin Jurusan:</strong> Hanya diperkenankan mengunggah (menambahkan) Berita, Artikel, dan Dokumen tanpa wewenang mengubah/menghapus.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 2. NEWS/ARTICLES PANEL ==================== -->
+        <div class="cms-panel" id="panel-news">
+          <div class="cms-action-bar">
+            <h2>Daftar Berita & Artikel</h2>
+            <button class="btn btn-secondary text-xs" onclick="showForm('news')">Tambah Berita Baru</button>
+          </div>
+          
+          <!-- News form -->
+          <div id="form-news" class="cms-form-grid" style="display: none;">
+            <h3 id="form-news-title">Tambah Berita</h3>
+            <form onsubmit="submitForm(event, 'news')">
+              <input type="hidden" id="news-id" />
+              <div class="cms-form-grid cols-2" style="padding:0; box-shadow:none; margin:0;">
+                <div class="form-group">
+                  <label for="news-title">Judul Berita</label>
+                  <input type="text" id="news-title" required />
+                </div>
+                <div class="form-group">
+                  <label for="news-category">Kategori</label>
+                  <input type="text" id="news-category" placeholder="Kegiatan, Akreditasi, Workshop" required />
+                </div>
+                <div class="form-group">
+                  <label for="news-badge">Tipe Lencana (Badge Class)</label>
+                  <select id="news-badge">
+                    <option value="badge-success">Hijau (Kegiatan)</option>
+                    <option value="badge-warning">Kuning (Akreditasi)</option>
+                    <option value="badge-info">Biru (Workshop/Info)</option>
+                    <option value="badge-danger">Merah (Penting)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="news-image">URL Gambar Cover (Unsplash/Tautan)</label>
+                  <input type="url" id="news-image" required />
+                </div>
+              </div>
+              <div class="form-group mt-2">
+                <label for="news-summary">Ringkasan Deskripsi Berita</label>
+                <textarea id="news-summary" rows="3" required></textarea>
+              </div>
+              <div class="form-group mt-2">
+                <label for="news-link">Link Berita (Kosongkan jika hanya artikel preview)</label>
+                <input type="text" id="news-link" placeholder="#" />
+              </div>
+              <div class="flex gap-2 mt-3">
+                <button type="button" class="btn btn-outline" onclick="hideForm('news')">Batal</button>
+                <button type="submit" class="btn btn-secondary">Simpan Berita</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- News table -->
+          <div class="cms-table-container">
+            <table class="cms-table">
+              <thead>
+                <tr>
+                  <th>Judul Berita</th>
+                  <th>Kategori</th>
+                  <th>Ringkasan</th>
+                  <th class="mgmt-col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="cms-news-list">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==================== 3. DOCUMENTS MUTU PANEL ==================== -->
+        <div class="cms-panel" id="panel-docs">
+          <div class="cms-action-bar">
+            <h2>Kelola Dokumen Mutu</h2>
+            <button class="btn btn-secondary text-xs" onclick="showForm('docs')">Tambah Dokumen Baru</button>
+          </div>
+          
+          <!-- Docs form -->
+          <div id="form-docs" class="cms-form-grid" style="display: none;">
+            <h3 id="form-docs-title">Tambah Dokumen</h3>
+            <form onsubmit="submitForm(event, 'docs')">
+              <input type="hidden" id="docs-id" />
+              <div class="cms-form-grid cols-2" style="padding:0; box-shadow:none; margin:0;">
+                <div class="form-group">
+                  <label for="docs-title">Judul Dokumen</label>
+                  <input type="text" id="docs-title" required />
+                </div>
+                <div class="form-group">
+                  <label for="docs-category">Kategori</label>
+                  <input type="text" id="docs-category" placeholder="Kebijakan, Panduan, Instrumen, SOP" required />
+                </div>
+                <div class="form-group">
+                  <label for="docs-badge">Tipe Lencana (Badge Class)</label>
+                  <select id="docs-badge">
+                    <option value="badge-success">Hijau (Kebijakan/SOP)</option>
+                    <option value="badge-warning">Kuning (Panduan/Laporan)</option>
+                    <option value="badge-info">Biru (Instrumen/Uji)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="docs-image">URL Gambar Pratinjau Cover</label>
+                  <input type="url" id="docs-image" required />
+                </div>
+              </div>
+              <div class="form-group mt-2">
+                <label for="docs-driveUrl">Tautan Google Drive (G-Drive Preview URL)</label>
+                <input type="url" id="docs-driveUrl" placeholder="https://drive.google.com/file/d/ID/preview" required />
+                <span class="muted text-xs block mt-1">Gunakan link sharing file dari Google Drive dengan penanda <code>/preview</code> atau <code>/view</code>.</span>
+              </div>
+              <div class="form-group mt-2">
+                <label for="docs-description">Deskripsi Lengkap Dokumen</label>
+                <textarea id="docs-description" rows="3" required></textarea>
+              </div>
+              <div class="form-group mt-2">
+                <label for="docs-filename">Nama Berkas Unduhan (misal: panduan_ami.pdf)</label>
+                <input type="text" id="docs-filename" placeholder="dokumen.pdf" required />
+              </div>
+              <div class="flex gap-2 mt-3">
+                <button type="button" class="btn btn-outline" onclick="hideForm('docs')">Batal</button>
+                <button type="submit" class="btn btn-secondary">Simpan Dokumen</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Docs table -->
+          <div class="cms-table-container">
+            <table class="cms-table">
+              <thead>
+                <tr>
+                  <th>Judul Dokumen</th>
+                  <th>Kategori</th>
+                  <th>Nama Berkas</th>
+                  <th class="mgmt-col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="cms-docs-list">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==================== 4. HERO SLIDER PANEL ==================== -->
+        <div class="cms-panel" id="panel-slider">
+          <div class="cms-action-bar">
+            <h2>Kelola Hero Slider Beranda</h2>
+            <button class="btn btn-secondary text-xs" onclick="showForm('slider')">Tambah Slide Baru</button>
+          </div>
+          
+          <!-- Slider form -->
+          <div id="form-slider" class="cms-form-grid" style="display: none;">
+            <h3 id="form-slider-title">Tambah Slide</h3>
+            <form onsubmit="submitForm(event, 'slider')">
+              <input type="hidden" id="slider-id" />
+              <div class="form-group">
+                <label for="slider-title">Judul Slide (Mendukung HTML <code>&lt;br/&gt;</code>)</label>
+                <input type="text" id="slider-title" required />
+              </div>
+              <div class="form-group mt-2">
+                <label for="slider-lead">Deskripsi Subtitle / Lead</label>
+                <textarea id="slider-lead" rows="2" required></textarea>
+              </div>
+              <div class="cms-form-grid cols-2" style="padding:0; box-shadow:none; margin:1rem 0 0 0;">
+                <div class="form-group">
+                  <label for="slider-image">URL Gambar Background</label>
+                  <input type="url" id="slider-image" onchange="document.getElementById('slider-img-preview').src = this.value" required />
+                  <img id="slider-img-preview" src="" class="cms-slider-preview" alt="Preview Gambar" />
+                </div>
+                <div>
+                  <div class="form-group">
+                    <label for="slider-btnText">Teks Tombol Aksi</label>
+                    <input type="text" id="slider-btnText" placeholder="Lihat Selengkapnya" />
+                  </div>
+                  <div class="form-group mt-2">
+                    <label for="slider-btnLink">Tautan Tombol Aksi</label>
+                    <input type="text" id="slider-btnLink" placeholder="#news" />
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-2 mt-3">
+                <button type="button" class="btn btn-outline" onclick="hideForm('slider')">Batal</button>
+                <button type="submit" class="btn btn-secondary">Simpan Slide</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Slider table -->
+          <div class="cms-table-container">
+            <table class="cms-table">
+              <thead>
+                <tr>
+                  <th>Judul Slide</th>
+                  <th>Lead Text</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="cms-slider-list">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==================== 5. SITE SETTINGS PANEL ==================== -->
+        <div class="cms-panel" id="panel-site">
+          <h2>Pengaturan Global Situs & Navbar</h2>
+          <p class="muted">Konfigurasi teks navbar, kontak footer, dan judul website.</p>
+          
+          <form onsubmit="saveSiteSettings(event)" class="cms-form-grid mt-2">
+            <div class="cms-form-grid cols-2" style="padding:0; box-shadow:none; margin:0;">
+              <div class="form-group">
+                <label for="site-title">Judul Web (Navbar)</label>
+                <input type="text" id="site-title" required />
+              </div>
+              <div class="form-group">
+                <label for="site-sub">Sub-judul Web (Navbar)</label>
+                <input type="text" id="site-sub" required />
+              </div>
+              <div class="form-group">
+                <label for="site-logo">Tautan File Logo</label>
+                <input type="text" id="site-logo" required />
+              </div>
+            </div>
+            
+            <hr style="border: 0; height: 1px; background: var(--border); margin: 1rem 0;" />
+            <h3>Pengaturan Kontak Footer</h3>
+            
+            <div class="cms-form-grid cols-2" style="padding:0; box-shadow:none; margin:0;">
+              <div class="form-group">
+                <label for="footer-address">Alamat Kampus</label>
+                <input type="text" id="footer-address" required />
+              </div>
+              <div class="form-group">
+                <label for="footer-phone">Nomor Telepon</label>
+                <input type="text" id="footer-phone" required />
+              </div>
+              <div class="form-group">
+                <label for="footer-email">Email Resmi KPI</label>
+                <input type="email" id="footer-email" required />
+              </div>
+              <div class="form-group">
+                <label for="footer-copyright">Copyright Footer</label>
+                <input type="text" id="footer-copyright" required />
+              </div>
+            </div>
+            
+            <div class="mt-3">
+              <button type="submit" class="btn btn-secondary">Simpan Pengaturan Web</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ==================== 6. USER MANAGEMENT PANEL ==================== -->
+        <div class="cms-panel" id="panel-users">
+          <div class="cms-action-bar">
+            <h2>Pengaturan Pengguna & Akses</h2>
+            <button class="btn btn-secondary text-xs" onclick="showForm('users')">Tambah Akun Admin</button>
+          </div>
+          
+          <!-- Users form -->
+          <div id="form-users" class="cms-form-grid" style="display: none;">
+            <h3>Tambah Pengguna</h3>
+            <form onsubmit="submitForm(event, 'users')">
+              <div class="cms-form-grid cols-2" style="padding:0; box-shadow:none; margin:0;">
+                <div class="form-group">
+                  <label for="users-name">Nama Lengkap</label>
+                  <input type="text" id="users-name" required />
+                </div>
+                <div class="form-group">
+                  <label for="users-username">Username Login</label>
+                  <input type="text" id="users-username" required />
+                </div>
+                <div class="form-group">
+                  <label for="users-password">Kata Sandi (Password)</label>
+                  <input type="password" id="users-password" placeholder="Isi password..." required />
+                </div>
+                <div class="form-group">
+                  <label for="users-role">Otoritas Akses (Role)</label>
+                  <select id="users-role">
+                    <option value="adminjurusan">Admin Jurusan (Tingkat Bawah)</option>
+                    <option value="admingpm">Admin GPM (Tingkat Menengah)</option>
+                    <option value="adminkpm">Admin KPM (Tingkat Penuh)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex gap-2 mt-3">
+                <button type="button" class="btn btn-outline" onclick="hideForm('users')">Batal</button>
+                <button type="submit" class="btn btn-secondary">Tambah Pengguna</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Users table -->
+          <div class="cms-table-container">
+            <table class="cms-table">
+              <thead>
+                <tr>
+                  <th>Nama Lengkap</th>
+                  <th>Username</th>
+                  <th>Role</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="cms-users-list">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
   </div>
 
-  <main class="container" id="news">
-    <section>
-      <h2>Pengaturan &amp; Preferensi</h2>
-      <p class="muted mb-3">Modul kontrol administrasi dan konfigurasi awal operasional KPM FDK UINAM.</p>
+  <!-- JavaScript logic to load database collections and render CRUD controls -->
+  <script>
+    let currentUser = null;
+    
+    // Auth Check on DOM Load
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        
+        if (!data.user) {
+          // Redirect to login if unauthorized
+          location.href = '../masuk/index.html';
+          return;
+        }
+        
+        currentUser = data.user;
+        document.getElementById('cmsUsername').textContent = currentUser.name;
+        document.getElementById('cmsUserRole').textContent = getRoleName(currentUser.role);
+        document.getElementById('stat-user-role').textContent = getRoleName(currentUser.role);
+        
+        // Show whole dashboard app
+        document.getElementById('cmsApp').style.display = 'flex';
+        
+        // Handle RBAC View Hiding
+        applyRBACPermissions();
+        
+        // Fetch stats and counts
+        fetchOverviewStats();
+        
+      } catch (err) {
+        console.error(err);
+        location.href = '../masuk/index.html';
+      }
+    });
+
+    function getRoleName(role) {
+      if (role === 'adminkpm') return 'Admin KPM (Full)';
+      if (role === 'admingpm') return 'Admin GPM (Gugus)';
+      return 'Admin Jurusan';
+    }
+
+    function applyRBACPermissions() {
+      if (currentUser.role !== 'adminkpm') {
+        // Hide full admin tabs from sidebar
+        document.querySelectorAll('.kpm-only').forEach(el => el.style.display = 'none');
+        // If not adminkpm and not admingpm (i.e. adminjurusan), we hide manage edit/delete controls or handle it in table renderers
+      }
       
-      <div class="grid-responsive cols-3-md">
-        <!-- Notifikasi -->
-        <article class="card hover-lift p-0 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1554163065-55a6c2b1f0b8?w=800&q=60" alt="Preferensi Notifikasi" style="width:100%; height:160px; object-fit:cover;"/>
-          <div class="p-3">
-            <h3 class="mb-1 text-lg">Notifikasi</h3>
-            <p class="muted text-sm mb-0">Kelola pengaturan peringatan otomatis email untuk tenggat waktu penyerahan berkas akreditasi prodi.</p>
-          </div>
-        </article>
+      // Let's adjust table column display if user is adminjurusan (who has no delete/edit permissions)
+      if (currentUser.role === 'adminjurusan') {
+        document.querySelectorAll('.mgmt-col').forEach(el => el.style.display = 'none');
+      }
+    }
 
-        <!-- Hak Akses -->
-        <article class="card hover-lift p-0 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=60" alt="Hak Akses Anggota" style="width:100%; height:160px; object-fit:cover;"/>
-          <div class="p-3">
-            <h3 class="mb-1 text-lg">Hak Akses</h3>
-            <p class="muted text-sm mb-0">Atur hak akses pengelolaan file (Viewer, Editor, Administrator) bagi perwakilan penjaminan mutu tiap prodi.</p>
-          </div>
-        </article>
+    // Switch Panel Tabs
+    function switchTab(tab) {
+      // Set menu active
+      document.querySelectorAll('.cms-menu-item').forEach(el => el.classList.remove('active'));
+      document.getElementById('menu-' + tab).classList.add('active');
+      
+      // Set panel active
+      document.querySelectorAll('.cms-panel').forEach(el => el.classList.remove('active'));
+      document.getElementById('panel-' + tab).classList.add('active');
+      
+      // Set Panel Header Title
+      const titles = {
+        dash: 'Dashboard Ringkasan',
+        news: 'Kelola Berita & Kegiatan',
+        docs: 'Kelola Dokumen & Panduan',
+        slider: 'Kelola Slideshow Hero',
+        site: 'Pengaturan Header & Footer',
+        users: 'Kelola Akun Otoritas'
+      };
+      document.getElementById('cmsPanelTitle').textContent = titles[tab];
+      
+      // Load tab-specific collection data
+      if (tab === 'news') loadNewsList();
+      if (tab === 'docs') loadDocsList();
+      if (tab === 'slider') loadSliderList();
+      if (tab === 'site') loadSiteSettings();
+      if (tab === 'users') loadUsersList();
+    }
 
-        <!-- Jadwal Evaluasi -->
-        <article class="card hover-lift p-0 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?w=800&q=60" alt="Jadwal Evaluasi" style="width:100%; height:160px; object-fit:cover;"/>
-          <div class="p-3">
-            <h3 class="mb-1 text-lg">Jadwal Evaluasi</h3>
-            <p class="muted text-sm mb-0">Konfigurasi timeline pelaksanaan Audit Mutu Internal (AMI) dan monitoring kepuasan layanan per semester.</p>
-          </div>
-        </article>
-      </div>
-    </section>
+    // Stats fetching
+    async function fetchOverviewStats() {
+      const resNews = await fetch('/api/news');
+      const news = await resNews.json();
+      document.getElementById('stat-news-count').textContent = news.length;
 
-    <!-- Gallery Section -->
-    <section class="mt-4">
-      <h2>Galeri Aktivitas Administrasi</h2>
-      <div class="grid-responsive cols-2-md">
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=60" alt="Aktivitas Administrasi 1"/>
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&q=60" alt="Aktivitas Administrasi 2"/>
-        </div>
-      </div>
-    </section>
-  </main>
+      const resDocs = await fetch('/api/documents');
+      const docs = await resDocs.json();
+      document.getElementById('stat-docs-count').textContent = docs.length;
+    }
 
-  <footer class="site-footer">
-    <div class="container flex flex-wrap justify-between gap-4">
-      <div style="max-width:480px;">
-        <strong class="text-lg block mb-1">Fakultas Dakwah dan Komunikasi &mdash; UIN Alauddin Makassar</strong>
-        <div class="muted">Kampus II: Jalan H. M. Yasin Limpo No. 36 Romang Polong, Somba Opu, Gowa, Sulawesi Selatan</div>
-        <div class="mt-2 text-sm">
-          <strong>Telepon:</strong> <span class="muted">085343803672</span><br/>
-          <strong>Email:</strong> <span class="muted">kpi.fdk@uin-alauddin.ac.id</span>
-        </div>
-      </div>
-      <div class="text-right-mobile mt-2">
-        <strong class="text-lg block">KPM FDK UINAM</strong>
-        <div class="muted text-sm">Dibuat oleh Ariel Usman &copy; 2026</div>
-      </div>
-    </div>
-    <div class="container">
-      <hr class="footer-divider" />
-      <div class="text-center text-xs muted">
-        &copy; 2026 Komite Penjaminan Mutu FDK UIN Alauddin Makassar. Hak Cipta Dilindungi Undang-Undang.
-      </div>
-    </div>
-  </footer>
+    // FORM VISIBILITY
+    function showForm(type) {
+      document.getElementById('form-' + type).style.display = 'block';
+      // reset form
+      if (type === 'news') {
+        document.getElementById('news-id').value = '';
+        document.getElementById('news-title').value = '';
+        document.getElementById('news-category').value = '';
+        document.getElementById('news-image').value = '';
+        document.getElementById('news-summary').value = '';
+        document.getElementById('news-link').value = '#';
+        document.getElementById('form-news-title').textContent = 'Tambah Berita';
+      }
+      if (type === 'docs') {
+        document.getElementById('docs-id').value = '';
+        document.getElementById('docs-title').value = '';
+        document.getElementById('docs-category').value = '';
+        document.getElementById('docs-image').value = '';
+        document.getElementById('docs-driveUrl').value = '';
+        document.getElementById('docs-description').value = '';
+        document.getElementById('docs-filename').value = '';
+        document.getElementById('form-docs-title').textContent = 'Tambah Dokumen';
+      }
+      if (type === 'slider') {
+        document.getElementById('slider-id').value = '';
+        document.getElementById('slider-title').value = '';
+        document.getElementById('slider-lead').value = '';
+        document.getElementById('slider-image').value = '';
+        document.getElementById('slider-img-preview').src = '';
+        document.getElementById('slider-btnText').value = 'Lihat Selengkapnya';
+        document.getElementById('slider-btnLink').value = '#';
+        document.getElementById('form-slider-title').textContent = 'Tambah Slide';
+      }
+    }
+    
+    function hideForm(type) {
+      document.getElementById('form-' + type).style.display = 'none';
+    }
 
-  <script src="../assets/app.js"></script>
+    // ==================== 1. NEWS CRUD FUNCTIONS ====================
+    async function loadNewsList() {
+      const res = await fetch('/api/news');
+      const news = await res.json();
+      const tbody = document.getElementById('cms-news-list');
+      tbody.innerHTML = '';
+      
+      news.forEach(item => {
+        const tr = document.createElement('tr');
+        const showMgmt = currentUser.role !== 'adminjurusan';
+        
+        tr.innerHTML = `
+          <td><strong>${item.title}</strong></td>
+          <td><span class="badge ${item.badge || 'badge-success'}">${item.category}</span></td>
+          <td><span class="muted text-xs">${item.summary.substring(0, 70)}...</span></td>
+          ${showMgmt ? `
+            <td style="width:100px;">
+              <div class="action-btns">
+                <button class="btn-icon edit" onclick="editNews('${item.id}', '${escapeHtml(item.title)}', '${escapeHtml(item.category)}', '${item.badge}', '${item.image}', '${escapeHtml(item.summary)}', '${item.link}')" title="Edit">✏️</button>
+                <button class="btn-icon delete" onclick="deleteNews('${item.id}')" title="Hapus">🗑️</button>
+              </div>
+            </td>
+          ` : '<td class="mgmt-col">-</td>'}
+        `;
+        tbody.appendChild(tr);
+      });
+      applyRBACPermissions();
+    }
+
+    function editNews(id, title, category, badge, image, summary, link) {
+      showForm('news');
+      document.getElementById('news-id').value = id;
+      document.getElementById('news-title').value = title;
+      document.getElementById('news-category').value = category;
+      document.getElementById('news-badge').value = badge;
+      document.getElementById('news-image').value = image;
+      document.getElementById('news-summary').value = summary;
+      document.getElementById('news-link').value = link;
+      document.getElementById('form-news-title').textContent = 'Edit Berita';
+    }
+
+    async function deleteNews(id) {
+      if (!confirm('Apakah Anda yakin ingin menghapus berita ini?')) return;
+      const res = await fetch('/api/news/' + id, { method: 'DELETE' });
+      if (res.ok) {
+        alert('Berita berhasil dihapus.');
+        loadNewsList();
+        fetchOverviewStats();
+      } else {
+        const err = await res.json();
+        alert('Gagal menghapus: ' + err.error);
+      }
+    }
+
+    // ==================== 2. DOCUMENT CRUD FUNCTIONS ====================
+    async function loadDocsList() {
+      const res = await fetch('/api/documents');
+      const docs = await res.json();
+      const tbody = document.getElementById('cms-docs-list');
+      tbody.innerHTML = '';
+      
+      docs.forEach(item => {
+        const tr = document.createElement('tr');
+        const showMgmt = currentUser.role !== 'adminjurusan';
+        
+        tr.innerHTML = `
+          <td><strong>${item.title}</strong></td>
+          <td><span class="badge ${item.badge || 'badge-success'}">${item.category}</span></td>
+          <td><code class="text-xs">${item.filename}</code></td>
+          ${showMgmt ? `
+            <td style="width:100px;">
+              <div class="action-btns">
+                <button class="btn-icon edit" onclick="editDoc('${item.id}', '${escapeHtml(item.title)}', '${escapeHtml(item.category)}', '${item.badge}', '${item.image}', '${item.driveUrl}', '${escapeHtml(item.description)}', '${item.filename}')" title="Edit">✏️</button>
+                <button class="btn-icon delete" onclick="deleteDoc('${item.id}')" title="Hapus">🗑️</button>
+              </div>
+            </td>
+          ` : '<td class="mgmt-col">-</td>'}
+        `;
+        tbody.appendChild(tr);
+      });
+      applyRBACPermissions();
+    }
+
+    function editDoc(id, title, category, badge, image, driveUrl, description, filename) {
+      showForm('docs');
+      document.getElementById('docs-id').value = id;
+      document.getElementById('docs-title').value = title;
+      document.getElementById('docs-category').value = category;
+      document.getElementById('docs-badge').value = badge;
+      document.getElementById('docs-image').value = image;
+      document.getElementById('docs-driveUrl').value = driveUrl;
+      document.getElementById('docs-description').value = description;
+      document.getElementById('docs-filename').value = filename;
+      document.getElementById('form-docs-title').textContent = 'Edit Dokumen';
+    }
+
+    async function deleteDoc(id) {
+      if (!confirm('Apakah Anda yakin ingin menghapus dokumen ini?')) return;
+      const res = await fetch('/api/documents/' + id, { method: 'DELETE' });
+      if (res.ok) {
+        alert('Dokumen berhasil dihapus.');
+        loadDocsList();
+        fetchOverviewStats();
+      } else {
+        const err = await res.json();
+        alert('Gagal menghapus: ' + err.error);
+      }
+    }
+
+    // ==================== 3. HERO SLIDER CRUD FUNCTIONS ====================
+    async function loadSliderList() {
+      const res = await fetch('/api/slides');
+      const slides = await res.json();
+      const tbody = document.getElementById('cms-slider-list');
+      tbody.innerHTML = '';
+      
+      slides.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${item.title.replace(/<br\s*\/?>/gi, ' ')}</strong></td>
+          <td><span class="muted text-xs">${item.lead}</span></td>
+          <td style="width:100px;">
+            <div class="action-btns">
+              <button class="btn-icon edit" onclick="editSlide('${item.id}', '${escapeHtml(item.title)}', '${escapeHtml(item.lead)}', '${item.image}', '${item.buttonText}', '${item.buttonLink}')" title="Edit">✏️</button>
+              <button class="btn-icon delete" onclick="deleteSlide('${item.id}')" title="Hapus">🗑️</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function editSlide(id, title, lead, image, btnText, btnLink) {
+      showForm('slider');
+      document.getElementById('slider-id').value = id;
+      document.getElementById('slider-title').value = title;
+      document.getElementById('slider-lead').value = lead;
+      document.getElementById('slider-image').value = image;
+      document.getElementById('slider-img-preview').src = image;
+      document.getElementById('slider-btnText').value = btnText;
+      document.getElementById('slider-btnLink').value = btnLink;
+      document.getElementById('form-slider-title').textContent = 'Edit Slide';
+    }
+
+    async function deleteSlide(id) {
+      if (!confirm('Apakah Anda yakin ingin menghapus slide ini?')) return;
+      const res = await fetch('/api/slides/' + id, { method: 'DELETE' });
+      if (res.ok) {
+        alert('Slide berhasil dihapus.');
+        loadSliderList();
+      } else {
+        const err = await res.json();
+        alert('Gagal: ' + err.error);
+      }
+    }
+
+    // ==================== 4. GENERAL WEB SETTINGS ====================
+    async function loadSiteSettings() {
+      const res = await fetch('/api/site-settings');
+      const settings = await res.json();
+      
+      document.getElementById('site-title').value = settings.siteTitle;
+      document.getElementById('site-sub').value = settings.siteSub;
+      document.getElementById('site-logo').value = settings.logo;
+      document.getElementById('footer-address').value = settings.footer.address;
+      document.getElementById('footer-phone').value = settings.footer.phone;
+      document.getElementById('footer-email').value = settings.footer.email;
+      document.getElementById('footer-copyright').value = settings.footer.copyright;
+    }
+
+    async function saveSiteSettings(e) {
+      e.preventDefault();
+      const body = {
+        siteTitle: document.getElementById('site-title').value,
+        siteSub: document.getElementById('site-sub').value,
+        logo: document.getElementById('site-logo').value,
+        footerAddress: document.getElementById('footer-address').value,
+        footerPhone: document.getElementById('footer-phone').value,
+        footerEmail: document.getElementById('footer-email').value,
+        footerCopyright: document.getElementById('footer-copyright').value
+      };
+      
+      const res = await fetch('/api/site-settings', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      
+      if (res.ok) {
+        alert('Pengaturan web berhasil diperbarui.');
+      } else {
+        alert('Gagal menyimpan.');
+      }
+    }
+
+    // ==================== 5. USER ACCOUNTS CRUD ====================
+    async function loadUsersList() {
+      const res = await fetch('/api/users');
+      const users = await res.json();
+      const tbody = document.getElementById('cms-users-list');
+      tbody.innerHTML = '';
+      
+      users.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${item.name}</strong></td>
+          <td><code>${item.username}</code></td>
+          <td><span class="badge badge-secondary">${getRoleName(item.role)}</span></td>
+          <td style="width:100px;">
+            <div class="action-btns">
+              <button class="btn-icon delete" onclick="deleteUser('${item.id}')" title="Hapus">🗑️</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function deleteUser(id) {
+      if (id === currentUser.id) {
+        alert('Anda tidak bisa menghapus akun Anda sendiri.');
+        return;
+      }
+      if (!confirm('Apakah Anda yakin ingin menghapus akun ini?')) return;
+      const res = await fetch('/api/users/' + id, { method: 'DELETE' });
+      if (res.ok) {
+        alert('Pengguna berhasil dihapus.');
+        loadUsersList();
+      } else {
+        const err = await res.json();
+        alert('Gagal: ' + err.error);
+      }
+    }
+
+    // ==================== FORM SUBMIT HANDLERS ====================
+    async function submitForm(e, type) {
+      e.preventDefault();
+      let url = '/api/' + type;
+      let method = 'POST';
+      let body = {};
+      
+      if (type === 'news') {
+        const id = document.getElementById('news-id').value;
+        if (id) {
+          url += '/' + id;
+          method = 'PUT';
+        }
+        body = {
+          title: document.getElementById('news-title').value,
+          category: document.getElementById('news-category').value,
+          badge: document.getElementById('news-badge').value,
+          image: document.getElementById('news-image').value,
+          summary: document.getElementById('news-summary').value,
+          link: document.getElementById('news-link').value
+        };
+      }
+      
+      if (type === 'docs') {
+        const id = document.getElementById('docs-id').value;
+        if (id) {
+          url += '/' + id;
+          method = 'PUT';
+        }
+        body = {
+          title: document.getElementById('docs-title').value,
+          category: document.getElementById('docs-category').value,
+          badge: document.getElementById('docs-badge').value,
+          image: document.getElementById('docs-image').value,
+          driveUrl: document.getElementById('docs-driveUrl').value,
+          description: document.getElementById('docs-description').value,
+          filename: document.getElementById('docs-filename').value
+        };
+      }
+      
+      if (type === 'slider') {
+        const id = document.getElementById('slider-id').value;
+        if (id) {
+          url += '/' + id;
+          method = 'PUT';
+        }
+        body = {
+          title: document.getElementById('slider-title').value,
+          lead: document.getElementById('slider-lead').value,
+          image: document.getElementById('slider-image').value,
+          buttonText: document.getElementById('slider-btnText').value,
+          buttonLink: document.getElementById('slider-btnLink').value
+        };
+      }
+      
+      if (type === 'users') {
+        body = {
+          name: document.getElementById('users-name').value,
+          username: document.getElementById('users-username').value,
+          password: document.getElementById('users-password').value,
+          role: document.getElementById('users-role').value
+        };
+      }
+      
+      const res = await fetch(url, {
+        method: method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      
+      if (res.ok) {
+        alert('Konten berhasil disimpan.');
+        hideForm(type);
+        if (type === 'news') loadNewsList();
+        if (type === 'docs') loadDocsList();
+        if (type === 'slider') loadSliderList();
+        if (type === 'users') {
+          loadUsersList();
+          document.getElementById('users-name').value = '';
+          document.getElementById('users-username').value = '';
+          document.getElementById('users-password').value = '';
+        }
+        fetchOverviewStats();
+      } else {
+        const err = await res.json();
+        alert('Gagal menyimpan: ' + err.error);
+      }
+    }
+
+    // LOGOUT
+    async function logout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      location.href = '../masuk/index.html';
+    }
+
+    // Helper: Escape HTML
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
 </body>
 </html>

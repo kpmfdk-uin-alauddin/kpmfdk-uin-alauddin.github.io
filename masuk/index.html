@@ -37,7 +37,6 @@
         <a href="../anggota/index.html" class="nav-link">Anggota</a>
         <a href="../akreditasi/index.html" class="nav-link">Akreditasi</a>
         <a href="../laporan/index.html" class="nav-link">Laporan</a>
-        <a href="../dokumen/index.html" class="nav-link">Dokumen</a>
         <a href="../masuk/index.html" class="btn btn-secondary">Masuk</a>
       </nav>
     </div>
@@ -66,10 +65,12 @@
         <h3>Masuk ke KPM</h3>
         <p class="muted">Gunakan akun demo terdaftar untuk mengakses purwarupa sistem.</p>
         
-        <form onsubmit="event.preventDefault(); location.href='../settings/index.html';">
+        <div id="loginError" style="display:none; color:var(--danger); background:#fee2e2; padding:0.5rem; border-radius:6px; margin-bottom:1rem; font-size:0.875rem; text-align:center;"></div>
+        
+        <form onsubmit="handleLogin(event)">
           <div class="form-group">
-            <label for="email">Alamat Surel (Email)</label>
-            <input type="email" id="email" placeholder="contoh@uin-alauddin.ac.id" required>
+            <label for="username">Nama Pengguna (Username)</label>
+            <input type="text" id="username" placeholder="Masukkan username..." required>
           </div>
           
           <div class="form-group">
@@ -78,7 +79,7 @@
           </div>
           
           <div class="form-group" style="margin-top: 1.5rem;">
-            <button class="btn btn-secondary" type="submit">Masuk (Demo)</button>
+            <button class="btn btn-secondary" type="submit" id="submitBtn">Masuk (Demo)</button>
           </div>
         </form>
       </div>
@@ -120,6 +121,44 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    async function handleLogin(e) {
+      e.preventDefault();
+      const errEl = document.getElementById('loginError');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      errEl.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Memproses...';
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        
+        const data = await res.json();
+        
+        if (!res.ok) {
+          throw new Error(data.error || 'Terjadi kesalahan sistem.');
+        }
+        
+        // Success: redirect to CMS settings dashboard
+        location.href = '../settings/index.html';
+        
+      } catch (err) {
+        errEl.textContent = err.message;
+        errEl.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Masuk (Demo)';
+      }
+    }
+  </script>
 
   <script src="../assets/app.js"></script>
 </body>

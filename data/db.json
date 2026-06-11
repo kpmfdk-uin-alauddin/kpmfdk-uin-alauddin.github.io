@@ -1,0 +1,160 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin_kpm",
+      "password": "password123",
+      "name": "Admin KPM",
+      "role": "adminkpm"
+    },
+    {
+      "id": "2",
+      "username": "admin_gpm",
+      "password": "password123",
+      "name": "Admin GPM",
+      "role": "admingpm"
+    },
+    {
+      "id": "3",
+      "username": "admin_jurusan",
+      "password": "password123",
+      "name": "Admin Jurusan KPI",
+      "role": "adminjurusan"
+    }
+  ],
+  "news": [
+    {
+      "id": "1",
+      "title": "Rapat Evaluasi Mutu Semester",
+      "category": "Kegiatan",
+      "badge": "badge-success",
+      "image": "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1200&q=60",
+      "summary": "Rapat Evaluasi Mutu Semester membahas capaian, kendala, dan rencana tindak lanjut untuk peningkatan mutu akademik lintas program studi secara periodik.",
+      "link": "berita-evaluasi-semester.html"
+    },
+    {
+      "id": "2",
+      "title": "Pengumpulan Bukti Akreditasi",
+      "category": "Akreditasi",
+      "badge": "badge-warning",
+      "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&q=60",
+      "summary": "Tim sedang mengumpulkan dokumen pendukung dan bukti administratif sebagai persiapan untuk proses visitasi akreditasi nasional.",
+      "link": "berita-pengumpulan-bukti-akreditasi.html"
+    },
+    {
+      "id": "3",
+      "title": "Workshop Penjaminan Mutu",
+      "category": "Workshop",
+      "badge": "badge-info",
+      "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=60",
+      "summary": "Pelatihan peningkatan kapasitas staf dan dosen dalam implementasi praktik penjaminan mutu internal secara berkelanjutan.",
+      "link": "berita-workshop-penjaminan-mutu.html"
+    }
+  ],
+  "documents": [
+    {
+      "id": "1",
+      "title": "Buku Standar SPMI FDK 2026",
+      "category": "Kebijakan",
+      "badge": "badge-success",
+      "image": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=60",
+      "description": "Pedoman Sistem Penjaminan Mutu Internal (SPMI) yang menjadi rujukan implementasi layanan tridharma fakultas.",
+      "driveUrl": "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvVY9tT95BS-y6K/preview",
+      "filename": "standar_spmi_fdk_2026.pdf"
+    },
+    {
+      "id": "2",
+      "title": "Buku Panduan AMI 2026",
+      "category": "Panduan",
+      "badge": "badge-warning",
+      "image": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=60",
+      "description": "Panduan teknis bagi auditor dan auditee dalam menyelenggarakan Audit Mutu Internal tahunan prodi.",
+      "driveUrl": "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvVY9tT95BS-y6K/preview",
+      "filename": "panduan_ami_2026.pdf"
+    },
+    {
+      "id": "3",
+      "title": "Kuesioner Kepuasan Layanan",
+      "category": "Instrumen",
+      "badge": "badge-info",
+      "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=60",
+      "description": "Instrumen survei resmi untuk mengukur indeks kepuasan mahasiswa, dosen, dan tenaga kependidikan.",
+      "driveUrl": "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvVY9tT95BS-y6K/preview",
+      "filename": "kuesioner_kepuasan_layanan.pdf"
+    },
+    {
+      "id": "4",
+      "title": "SOP Evaluasi Pembelajaran",
+      "category": "SOP",
+      "badge": "badge-success",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=60",
+      "description": "Standar Operasional Prosedur pelaksanaan monitoring perkuliahan tengah dan akhir semester.",
+      "driveUrl": "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvVY9tT95BS-y6K/preview",
+      "filename": "sop_evaluasi_pembelajaran.pdf"
+    },
+    {
+      "id": "5",
+      "title": "Kebijakan Mutu Akademik FDK",
+      "category": "Kebijakan",
+      "badge": "badge-success",
+      "image": "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?w=800&q=60",
+      "description": "Dokumen pernyataan dewan pimpinan fakultas mengenai visi, arah, dan komitmen penjaminan mutu.",
+      "driveUrl": "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvVY9tT95BS-y6K/preview",
+      "filename": "kebijakan_mutu_fdk.pdf"
+    },
+    {
+      "id": "6",
+      "title": "Laporan Monev Pengabdian",
+      "category": "Laporan",
+      "badge": "badge-warning",
+      "image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=60",
+      "description": "Laporan hasil pemantauan dan evaluasi mutu pelaksanaan pengabdian masyarakat dosen.",
+      "driveUrl": "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvVY9tT95BS-y6K/preview",
+      "filename": "monev_pengabdian_masyarakat.pdf"
+    }
+  ],
+  "slides": [
+    {
+      "id": "1",
+      "title": "Komite Penjaminan Mutu (KPM)<br/>Fakultas Dakwah & Komunikasi",
+      "lead": "Mengawal standar akademik, memandu evaluasi berkelanjutan, dan mempersiapkan program studi menuju akreditasi unggul secara konsisten.",
+      "image": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&q=80",
+      "buttonText": "Lihat Berita Utama",
+      "buttonLink": "#news"
+    },
+    {
+      "id": "2",
+      "title": "Persiapan Akreditasi Internasional",
+      "lead": "Mengembangkan kurikulum berbasis kompetensi global dan melakukan asesmen berkala kesiapan program studi FDK.",
+      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80",
+      "buttonText": "Cek Dokumen Akreditasi",
+      "buttonLink": "./akreditasi/index.html"
+    },
+    {
+      "id": "3",
+      "title": "Evaluasi Mutu Semesteran Efisien",
+      "lead": "Meningkatkan kepuasan layanan mahasiswa dan ketepatan evaluasi akademik dosen.",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600&q=80",
+      "buttonText": "Baca Laporan Mutu",
+      "buttonLink": "./laporan/index.html"
+    }
+  ],
+  "settings": {
+    "siteTitle": "KPM FDK UINAM",
+    "siteSub": "Fakultas Dakwah & Komunikasi",
+    "logo": "./assets/logoSementaraKessos.png",
+    "navLinks": [
+      { "label": "Beranda", "url": "/index.html" },
+      { "label": "Anggota", "url": "/anggota/index.html" },
+      { "label": "Akreditasi", "url": "/akreditasi/index.html" },
+      { "label": "Laporan", "url": "/laporan/index.html" },
+      { "label": "Dokumen", "url": "/dokumen/index.html" }
+    ],
+    "footer": {
+      "address": "Kampus II: Jalan H. M. Yasin Limpo No. 36 Romang Polong, Somba Opu, Gowa, Sulawesi Selatan",
+      "phone": "085343803672",
+      "email": "kpi.fdk@uin-alauddin.ac.id",
+      "copyright": "Dibuat oleh Ariel Usman & copy; 2026"
+    }
+  }
+}

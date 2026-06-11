@@ -9,7 +9,7 @@
   <meta name="description" content="Portal resmi Komite Penjaminan Mutu (KPM) Fakultas Dakwah & Komunikasi UIN Alauddin Makassar. Memastikan kualitas akademik dan kesiapan akreditasi unggul." />
   <meta name="keywords" content="KPM, Penjaminan Mutu, FDK, UIN Alauddin Makassar, Akreditasi, UINAM, Penjaminan Mutu Akademik" />
   <meta name="author" content="Ariel Usman" />
-  <link rel="canonical" href="https://kpmfdk-uin-alauddin.github.io/index.html" />
+  <link class="canonical-href" rel="canonical" href="https://kpmfdk-uin-alauddin.github.io/index.html" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
@@ -52,9 +52,11 @@
     </div>
   </header>
 
-  <section class="hero">
+  <!-- Hero Slider section -->
+  <section class="hero" id="heroSlider">
     <div class="hero-overlay"></div>
-    <div class="container hero-content">
+    <div class="container hero-content" id="heroContent">
+      <!-- Loaded dynamically via app.js slider engine, fallback static slider load -->
       <span class="badge badge-secondary mb-2">Penjaminan Mutu Internal</span>
       <h1>Komite Penjaminan Mutu (KPM)<br/>Fakultas Dakwah & Komunikasi</h1>
       <p class="lead">Mengawal standar akademik, memandu evaluasi berkelanjutan, dan mempersiapkan program studi menuju akreditasi unggul secara konsisten.</p>
@@ -72,8 +74,9 @@
       
       <!-- Responsive Grid for Main content + Sidebar -->
       <div class="grid-responsive layout-sidebar">
-        <div>
-          <!-- Article List -->
+        <!-- Main News Column -->
+        <div id="dynamicNewsGrid">
+          <!-- Seeding static layout for offline fallbacks, will get dynamic hydration from server -->
           <a href="berita-evaluasi-semester.html" class="block mb-3 hover-lift card p-0 overflow-hidden" style="color: inherit;">
             <article>
               <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1200&q=60" alt="Rapat Evaluasi" style="width:100%; height:320px; object-fit:cover;"/>
@@ -112,7 +115,7 @@
         <aside>
           <div class="card p-3">
             <h4 class="mb-2" style="border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem;">Berita Terkait</h4>
-            <ul class="news-sidebar-list">
+            <ul class="news-sidebar-list" id="sidebarNewsList">
               <li><a href="berita-evaluasi-semester.html">Rapat Evaluasi Mutu Semester</a></li>
               <li><a href="berita-pengumpulan-bukti-akreditasi.html">Pengumpulan Bukti Akreditasi</a></li>
               <li><a href="berita-workshop-penjaminan-mutu.html">Workshop Penjaminan Mutu</a></li>
