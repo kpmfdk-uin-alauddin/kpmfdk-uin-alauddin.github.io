@@ -34,7 +34,7 @@ CREATE TABLE documents (
     badge TEXT NOT NULL,
     image TEXT NOT NULL,
     description TEXT NOT NULL,
-    driveUrl TEXT NOT NULL,
+    "driveUrl" TEXT NOT NULL,
     filename TEXT NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -45,8 +45,8 @@ CREATE TABLE slides (
     title TEXT NOT NULL,
     lead TEXT NOT NULL,
     image TEXT NOT NULL,
-    buttonText TEXT NOT NULL,
-    buttonLink TEXT NOT NULL,
+    "buttonText" TEXT NOT NULL,
+    "buttonLink" TEXT NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -71,7 +71,7 @@ INSERT INTO news (id, title, category, badge, image, summary, link) VALUES
 ON CONFLICT (id) DO NOTHING;
 
 -- Insert Default Documents
-INSERT INTO documents (id, title, category, badge, image, description, driveUrl, filename) VALUES
+INSERT INTO documents (id, title, category, badge, image, description, "driveUrl", filename) VALUES
 ('1', 'Buku Standar SPMI FDK 2026', 'Kebijakan', 'badge-success', 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=60', 'Pedoman Sistem Penjaminan Mutu Internal (SPMI) yang menjadi rujukan implementasi layanan tridharma fakultas.', 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvVY9tT95BS-y6K/preview', 'standar_spmi_fdk_2026.pdf'),
 ('2', 'Buku Panduan AMI 2026', 'Panduan', 'badge-warning', 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=60', 'Panduan teknis bagi auditor dan auditee dalam menyelenggarakan Audit Mutu Internal tahunan prodi.', 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvVY9tT95BS-y6K/preview', 'panduan_ami_2026.pdf'),
 ('3', 'Kuesioner Kepuasan Layanan', 'Instrumen', 'badge-info', 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=60', 'Instrumen survei resmi untuk mengukur indeks kepuasan mahasiswa, dosen, dan tenaga kependidikan.', 'https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvVY9tT95BS-y6K/preview', 'kuesioner_kepuasan_layanan.pdf'),
@@ -81,7 +81,7 @@ INSERT INTO documents (id, title, category, badge, image, description, driveUrl,
 ON CONFLICT (id) DO NOTHING;
 
 -- Insert Default Slides
-INSERT INTO slides (id, title, lead, image, buttonText, buttonLink) VALUES
+INSERT INTO slides (id, title, lead, image, "buttonText", "buttonLink") VALUES
 ('1', 'Komite Penjaminan Mutu (KPM)<br/>Fakultas Dakwah & Komunikasi', 'Mengawal standar akademik, memandu evaluasi berkelanjutan, dan mempersiapkan program studi menuju akreditasi unggul secara konsisten.', 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&q=80', 'Lihat Berita Utama', '#news'),
 ('2', 'Persiapan Akreditasi Internasional', 'Mengembangkan kurikulum berbasis kompetensi global dan melakukan asesmen berkala kesiapan program studi FDK.', 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80', 'Cek Dokumen Akreditasi', './akreditasi/index.html'),
 ('3', 'Evaluasi Mutu Semesteran Efisien', 'Meningkatkan kepuasan layanan mahasiswa dan ketepatan evaluasi akademik dosen.', 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600&q=80', 'Baca Laporan Mutu', './laporan/index.html')
