@@ -4,7 +4,6 @@
   "description": "Komite Penjaminan Mutu (KPM) FDK UIN Alauddin Makassar Web Portal & CMS",
   "main": "",
   "scripts": {
-    "build": "echo 'Static build'"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.1",
