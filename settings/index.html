@@ -783,7 +783,10 @@
     // ==================== FORM SUBMIT HANDLERS ====================
     async function submitForm(e, type) {
       e.preventDefault();
-      let url = '/api/' + type;
+      let apiName = type;
+      if (type === 'docs') apiName = 'documents';
+      if (type === 'slider') apiName = 'slides';
+      let url = '/api/' + apiName;
       let method = 'POST';
       let body = {};
       
