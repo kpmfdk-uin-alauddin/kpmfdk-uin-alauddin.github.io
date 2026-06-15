@@ -36,8 +36,8 @@ app.get('/api/setup-db', async (req, res) => {
 });
 
 // Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(session({
   secret: 'kpm-fdk-uinam-secret-key-2026',
   resave: false,
