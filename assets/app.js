@@ -353,7 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add loading animation to forms
   document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', function() {
+    form.addEventListener('submit', function(e) {
+      if (e.defaultPrevented) return;
       const btn = this.querySelector('button[type="submit"]');
       if (btn) {
         btn.disabled = true;

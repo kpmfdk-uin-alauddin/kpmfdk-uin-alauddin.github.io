@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/tailwhip.css" />
     <link rel="stylesheet" href="../assets/styles.css" />
     <link rel="stylesheet" href="../assets/front.css" />
+    <link rel="stylesheet" href="../assets/cms.css" />
     <title>Dasbor Admin CMS | KPM FDK UINAM</title>
   </head>
 <body>
@@ -827,6 +828,13 @@
 
     async function saveSiteSettings(e) {
       e.preventDefault();
+      const form = e.target;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerHTML : 'Simpan Pengaturan Web';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Menyimpan...';
+      }
       const body = {
         siteTitle: document.getElementById('site-title').value,
         siteSub: document.getElementById('site-sub').value,
@@ -837,16 +845,25 @@
         footerCopyright: document.getElementById('footer-copyright').value
       };
       
-      const res = await fetch('/api/site-settings', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
-      
-      if (res.ok) {
-        alert('Pengaturan web berhasil diperbarui.');
-      } else {
-        alert('Gagal menyimpan.');
+      try {
+        const res = await fetch('/api/site-settings', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        
+        if (res.ok) {
+          alert('Pengaturan web berhasil diperbarui.');
+        } else {
+          alert('Gagal menyimpan.');
+        }
+      } catch (err) {
+        alert('Gagal menyimpan: ' + err.message);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
       }
     }
 
@@ -898,6 +915,14 @@
       let url = '/api/' + apiName;
       let method = 'POST';
       let body = {};
+      
+      const form = e.target;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerHTML : 'Simpan';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Menyimpan...';
+      }
       
       if (type === 'news') {
         const id = document.getElementById('news-id').value;
@@ -956,28 +981,37 @@
         };
       }
       
-      const res = await fetch(url, {
-        method: method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
-      
-      if (res.ok) {
-        alert('Konten berhasil disimpan.');
-        hideForm(type);
-        if (type === 'news') loadNewsList();
-        if (type === 'docs') loadDocsList();
-        if (type === 'slider') loadSliderList();
-        if (type === 'users') {
-          loadUsersList();
-          document.getElementById('users-name').value = '';
-          document.getElementById('users-username').value = '';
-          document.getElementById('users-password').value = '';
+      try {
+        const res = await fetch(url, {
+          method: method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        
+        if (res.ok) {
+          alert('Konten berhasil disimpan.');
+          hideForm(type);
+          if (type === 'news') loadNewsList();
+          if (type === 'docs') loadDocsList();
+          if (type === 'slider') loadSliderList();
+          if (type === 'users') {
+            loadUsersList();
+            document.getElementById('users-name').value = '';
+            document.getElementById('users-username').value = '';
+            document.getElementById('users-password').value = '';
+          }
+          fetchOverviewStats();
+        } else {
+          const err = await res.json();
+          alert('Gagal menyimpan: ' + err.error);
         }
-        fetchOverviewStats();
-      } else {
-        const err = await res.json();
-        alert('Gagal menyimpan: ' + err.error);
+      } catch (err) {
+        alert('Gagal menyimpan: ' + err.message);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
       }
     }
 
