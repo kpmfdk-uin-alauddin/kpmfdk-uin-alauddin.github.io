@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Adjust logo prefix for subdirectories
           const path = location.pathname.toLowerCase();
           let prefix = './';
-          if (path.includes('/akreditasi/') || path.includes('/anggota/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
+          if (path.includes('/akreditasi') || path.includes('/anggota') || path.includes('/laporan') || path.includes('/masuk') || path.includes('/settings') || path.includes('/dokumen')) {
             prefix = '../';
           }
           img.src = settings.logo.startsWith('./') ? prefix + settings.logo.substring(2) : settings.logo;
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const path = location.pathname.toLowerCase();
         let prefix = './';
-        if (path.includes('/akreditasi/') || path.includes('/anggota/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
+        if (path.includes('/akreditasi') || path.includes('/anggota') || path.includes('/laporan') || path.includes('/masuk') || path.includes('/settings') || path.includes('/dokumen')) {
           prefix = '../';
         }
         
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Only run on home page
     const path = location.pathname.toLowerCase();
-    if (!hero || !heroContent || path.includes('/berita-') || path.includes('/akreditasi/') || path.includes('/anggota/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
+    if (!hero || !heroContent || path.includes('/berita-') || path.includes('/akreditasi') || path.includes('/anggota') || path.includes('/laporan') || path.includes('/masuk') || path.includes('/settings') || path.includes('/dokumen')) {
       return;
     }
     
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Only run on homepage
     const path = location.pathname.toLowerCase();
-    if (!newsContainer || path.includes('/berita-') || path.includes('/akreditasi/') || path.includes('/anggota/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
+    if (!newsContainer || path.includes('/berita-') || path.includes('/akreditasi') || path.includes('/anggota') || path.includes('/laporan') || path.includes('/masuk') || path.includes('/settings') || path.includes('/dokumen')) {
       return;
     }
     
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (breadcrumb && title !== 'KPM') {
       let relativePrefix = '../';
-      if (path.includes('/anggota/') || path.includes('/akreditasi/') || path.includes('/laporan/') || path.includes('/masuk/') || path.includes('/settings/') || path.includes('/dokumen/')) {
+      if (path.includes('/anggota') || path.includes('/akreditasi') || path.includes('/laporan') || path.includes('/masuk') || path.includes('/settings') || path.includes('/dokumen')) {
         relativePrefix = '../';
       }
       if (path.split('/').filter(Boolean).length > 2) {

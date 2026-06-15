@@ -23,7 +23,7 @@ findHtmlFiles(rootDir);
 const standardHeader = `<header class="site-header">
   <div class="container flex flex-wrap items-center justify-between">
     <a href="/index.html" class="logo flex items-center gap-1" style="text-decoration:none; color:inherit;">
-      <img src="/assets/logosementarakessos.png" alt="Logo UINAM" style="height:48px;object-fit:contain"/>
+      <img src="/assets/logoKpm.svg" alt="Logo KPM" style="height:48px;width:auto;object-fit:contain"/>
       <div>
         <strong class="text-lg">KPM</strong>
         <div class="muted text-sm">Fakultas Dakwah &amp; Komunikasi</div>
@@ -85,6 +85,7 @@ const standardHead = `<meta charset="utf-8" />
     <link rel="stylesheet" href="/assets/front.css" />`;
 
 htmlFiles.forEach(file => {
+  if (file.toLowerCase().includes('settings')) return; // Skip CMS settings files to prevent layout override
   let content = fs.readFileSync(file, 'utf8');
 
   if (content.match(/<header/i) && content.match(/<\/header>/i)) {
