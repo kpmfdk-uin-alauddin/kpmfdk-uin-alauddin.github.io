@@ -448,3 +448,28 @@ body.show-focus-outline *:focus {
     bottom: 1.25rem;
   }
 }
+
+/* Thumbnail Optimization & Containment */
+article img, 
+.card img, 
+.gallery-item img, 
+#dynamicNewsGrid img, 
+#docsGrid img {
+  width: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* Ensure consistent aspect ratios for dynamic grids */
+#dynamicNewsGrid article img {
+  aspect-ratio: 16 / 9;
+  height: auto !important;
+  max-height: 320px;
+}
+
+#docsGrid img {
+  aspect-ratio: 4 / 3;
+  height: auto !important;
+  max-height: 200px;
+}
