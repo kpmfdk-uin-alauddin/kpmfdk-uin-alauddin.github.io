@@ -199,7 +199,7 @@
   background: var(--card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
-  overflow: hidden;
+  overflow-x: auto;
   border: 1px solid var(--border);
   margin-top: 1rem;
 }
@@ -276,18 +276,21 @@
 /* Responsive adjustments */
 @media (max-width: 992px) {
   .cms-sidebar {
-    width: 70px;
+    width: 80px;
   }
-  .cms-brand-text, .cms-user-badge strong, .cms-menu-item span, .cms-user-badge span {
+  .cms-brand-text, .cms-user-badge, .cms-menu-item span {
     display: none;
   }
   .cms-brand, .cms-menu-item a {
     justify-content: center;
-    padding: 1rem;
+    padding: 1.25rem 0.5rem;
+  }
+  .cms-menu-item a span:first-child {
+    font-size: 1.5rem;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .cms-container {
     flex-direction: column;
   }
@@ -295,11 +298,77 @@
     width: 100%;
     border-right: none;
     border-bottom: 3px solid var(--secondary);
+    flex-direction: row;
+    flex-wrap: wrap;
   }
-  .cms-brand-text, .cms-menu-item span {
-    display: inline;
+  .cms-brand {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  .cms-brand, .cms-menu-item a {
-    justify-content: flex-start;
+  .cms-brand-text {
+    display: block;
+  }
+  .cms-user-badge {
+    display: none;
+  }
+  .cms-menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .cms-menu-item {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  .cms-menu-item a {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8rem;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+  .cms-menu-item.active a {
+    border-bottom-color: var(--secondary);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  .cms-menu-item span {
+    display: inline !important;
+  }
+  .cms-menu-footer {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .cms-header {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .cms-header-actions {
+    width: 100%;
+  }
+  .cms-header-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+  .cms-content {
+    padding: 1rem;
+  }
+  .cms-form-grid {
+    padding: 1rem;
+  }
+  .cms-action-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .cms-action-bar .btn {
+    width: 100%;
   }
 }

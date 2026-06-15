@@ -102,8 +102,8 @@ INSERT INTO settings (key, value) VALUES
   ],
   "footer": {
     "address": "Kampus II: Jalan H. M. Yasin Limpo No. 36 Romang Polong, Somba Opu, Gowa, Sulawesi Selatan",
-    "phone": "085343803672",
-    "email": "kpi.fdk@uin-alauddin.ac.id",
+    "phone": "+62 853-4131-6921",
+    "email": "kpm.fdk@uin-alauddin.ac.id",
     "copyright": "Dibuat oleh Ariel Usman &copy; 2026"
   }
 }')
