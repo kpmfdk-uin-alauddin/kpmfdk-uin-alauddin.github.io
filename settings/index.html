@@ -213,9 +213,13 @@
                 </div>
               </div>
               <div class="form-group mt-2">
-                <label for="docs-driveUrl">Tautan Google Drive (G-Drive Preview URL)</label>
-                <input type="url" id="docs-driveUrl" placeholder="https://drive.google.com/file/d/ID/preview" required />
-                <span class="muted text-xs block mt-1">Gunakan link sharing file dari Google Drive dengan penanda <code>/preview</code> atau <code>/view</code>.</span>
+                <label for="docs-file-upload">Upload Berkas Dokumen (PDF, Word, Excel, dll. - Opsional)</label>
+                <input type="file" id="docs-file-upload" onchange="handleDocFile(this)" />
+              </div>
+              <div class="form-group mt-2">
+                <label for="docs-driveUrl">Tautan Google Drive (G-Drive URL)</label>
+                <input type="text" id="docs-driveUrl" placeholder="https://drive.google.com/file/d/ID/preview atau isi otomatis dari upload" required />
+                <span class="muted text-xs block mt-1">Gunakan link sharing file dari Google Drive atau pilih file lokal di atas untuk mengunggah berkas dokumen asli secara langsung.</span>
               </div>
               <div class="form-group mt-2">
                 <label for="docs-description">Deskripsi Lengkap Dokumen</label>
@@ -483,6 +487,19 @@
       reader.readAsDataURL(file);
     }
 
+    // Helper to read document file upload
+    function handleDocFile(inputEl) {
+      const file = inputEl.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('docs-driveUrl').value = e.target.result;
+        document.getElementById('docs-filename').value = file.name;
+      };
+      reader.readAsDataURL(file);
+    }
+
     let currentUser = null;
     
     // Auth Check on DOM Load
@@ -600,6 +617,7 @@
         document.getElementById('docs-category').value = '';
         document.getElementById('docs-image').value = '';
         if (document.getElementById('docs-image-file')) document.getElementById('docs-image-file').value = '';
+        if (document.getElementById('docs-file-upload')) document.getElementById('docs-file-upload').value = '';
         if (document.getElementById('docs-img-preview')) {
           document.getElementById('docs-img-preview').src = '';
           document.getElementById('docs-img-preview').style.display = 'none';

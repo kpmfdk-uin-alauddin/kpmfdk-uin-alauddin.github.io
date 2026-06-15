@@ -286,7 +286,7 @@
             <p class="muted text-sm mb-3" style="flex:1;">${item.description}</p>
             <div class="flex gap-2">
               <button class="btn btn-outline py-1 px-2 text-xs" style="flex:1;" onclick="openPreview('${escapeJs(item.title)}', '${item.driveUrl}', '${escapeJs(item.description)}', '${item.filename}')">Pratinjau</button>
-              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('${item.filename}', '${escapeJs(item.title)}')">Unduh</button>
+              <button class="btn btn-secondary py-1 px-2 text-xs" onclick="downloadDoc('${item.driveUrl}', '${item.filename}', '${escapeJs(item.title)}')">Unduh</button>
             </div>
           </div>
         `;
@@ -311,14 +311,35 @@
     function openPreview(title, driveUrl, desc, filename) {
       document.getElementById('modalTitle').textContent = title;
       
-      const cleanUrl = getCleanDrivePreviewUrl(driveUrl);
-      document.getElementById('modalDriveFrame').src = cleanUrl;
+      if (driveUrl.startsWith('data:')) {
+        // Local uploaded document
+        if (driveUrl.startsWith('data:application/pdf') || driveUrl.startsWith('data:image/')) {
+          document.getElementById('modalDriveFrame').src = driveUrl;
+        } else {
+          // Display friendly warning message for unviewable formats
+          document.getElementById('modalDriveFrame').src = 'about:blank';
+          setTimeout(() => {
+            const frameDoc = document.getElementById('modalDriveFrame').contentWindow.document;
+            frameDoc.open();
+            frameDoc.write(`
+              <div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; padding: 2rem; color: #334155;">
+                <p style="font-size: 1.125rem; font-weight: 600; margin: 0;">Pratinjau tidak tersedia untuk format berkas ini.</p>
+                <p style="font-size: 0.875rem; color: #64748b; margin-top: 0.5rem; margin-bottom: 0;">Silakan klik tombol "Unduh Berkas" di bawah ini untuk membuka dokumen asli.</p>
+              </div>
+            `);
+            frameDoc.close();
+          }, 100);
+        }
+      } else {
+        const cleanUrl = getCleanDrivePreviewUrl(driveUrl);
+        document.getElementById('modalDriveFrame').src = cleanUrl;
+      }
       
       document.getElementById('modalDesc').textContent = desc;
       
       const downloadBtn = document.getElementById('modalDownloadBtn');
       downloadBtn.onclick = function() {
-        downloadDoc(filename, title);
+        downloadDoc(driveUrl, filename, title);
       };
       
       document.getElementById('previewModal').classList.add('open');
@@ -330,30 +351,58 @@
       document.getElementById('modalDriveFrame').src = '';
     }
     
-    // Mock Blob Download Trigger
-    function downloadDoc(filename, title) {
-      // Create a mock PDF content blob
-      const content = `%PDF-1.4\n%... Mock Document Blob for ${title} ...\n` + 
-                      `Fakultas Dakwah & Komunikasi - UIN Alauddin Makassar\n` +
-                      `Komite Penjaminan Mutu (KPM)\n\n` +
-                      `Nama Berkas: ${filename}\n` +
-                      `Judul Dokumen: ${title}\n` +
-                      `Tanggal Unduh: ${new Date().toLocaleDateString('id-ID')}\n\n` +
-                      `Berkas ini diunduh secara resmi dari portal KPM FDK UINAM.\n` +
-                      `Semua hak cipta dan kepemilikan dokumen tetap berada di bawah wewenang KPM UINAM.`;
-                      
-      const blob = new Blob([content], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      
-      // Cleanup
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+    // File download trigger (Local base64 or Google Drive conversion)
+    function downloadDoc(driveUrl, filename, title) {
+      if (!driveUrl) return;
+
+      if (driveUrl.startsWith('data:')) {
+        // 1. Handle manually uploaded local base64 files
+        const link = document.createElement('a');
+        link.href = driveUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        // 2. Handle Google Drive URL conversion & fallback
+        // Open the original Google Drive view link in a new tab immediately as fallback
+        window.open(driveUrl, '_blank');
+
+        // Formulate automatic direct download links
+        const fileIdRegex = /\/file\/d\/([a-zA-Z0-9-_]+)/;
+        const match = driveUrl.match(fileIdRegex);
+        
+        const docIdRegex = /\/document\/d\/([a-zA-Z0-9-_]+)/;
+        const docMatch = driveUrl.match(docIdRegex);
+        
+        const sheetIdRegex = /\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/;
+        const sheetMatch = driveUrl.match(sheetIdRegex);
+        
+        const presIdRegex = /\/presentation\/d\/([a-zA-Z0-9-_]+)/;
+        const presMatch = driveUrl.match(presIdRegex);
+
+        let downloadUrl = '';
+
+        if (match && match[1]) {
+          downloadUrl = `https://drive.google.com/uc?export=download&id=${match[1]}`;
+        } else if (docMatch && docMatch[1]) {
+          downloadUrl = `https://docs.google.com/document/d/${docMatch[1]}/export?format=docx`;
+        } else if (sheetMatch && sheetMatch[1]) {
+          downloadUrl = `https://docs.google.com/spreadsheets/d/${sheetMatch[1]}/export?format=xlsx`;
+        } else if (presMatch && presMatch[1]) {
+          downloadUrl = `https://docs.google.com/presentation/d/${presMatch[1]}/export?format=pptx`;
+        }
+
+        if (downloadUrl) {
+          // Trigger automated browser download
+          const link = document.createElement('a');
+          link.href = downloadUrl;
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+      }
     }
     
     // Handle Esc key to close modal
