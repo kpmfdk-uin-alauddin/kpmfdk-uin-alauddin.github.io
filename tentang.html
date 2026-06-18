@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard KPM & GPM | FDK UIN Alauddin Makassar</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Dashboard Profil Pengelola Komite Penjaminan Mutu (KPM) & Gugus Penjaminan Mutu (GPM) Fakultas Dakwah dan Komunikasi UIN Alauddin Makassar 2026.">
+    <meta name="author" content="Ariel Usman">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dashboard KPM & GPM FDK UIN Alauddin">
+    <meta property="og:description" content="Sistem Dokumen & Penjaminan Mutu Internal melalui siklus PPEPP.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at top left, #0f172a, #020617);
+        }
+        /* Custom Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Glassmorphism utility classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-b: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen selection:bg-teal-500 selection:text-slate-900">
+
+    <!-- NAVBAR -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Left: Project Name -->
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-teal-400 to-emerald-500 flex items-center justify-center text-slate-950 font-bold">
+                        <i class="fa-solid fa-shield-halved text-sm"></i>
+                    </div>
+                    <span class="font-bold text-lg bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent tracking-wide">QA-FDK</span>
+                </div>
+                
+                <!-- Right: Menu Links -->
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                    <a href="#hero" class="text-slate-400 hover:text-teal-400 transition-colors">Beranda</a>
+                    <a href="#tugas" class="text-slate-400 hover:text-teal-400 transition-colors">Tugas Pokok</a>
+                    <a href="#struktur" class="text-slate-400 hover:text-teal-400 transition-colors">Struktur Organisasi</a>
+                    <a href="#legalitas" class="text-slate-400 hover:text-teal-400 transition-colors">Legalitas</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 px-4 py-4 space-y-3">
+            <a href="#hero" class="block text-slate-400 hover:text-teal-400 py-1" onclick="toggleMenu()">Beranda</a>
+            <a href="#tugas" class="block text-slate-400 hover:text-teal-400 py-1" onclick="toggleMenu()">Tugas Pokok</a>
+            <a href="#struktur" class="block text-slate-400 hover:text-teal-400 py-1" onclick="toggleMenu()">Struktur Organisasi</a>
+            <a href="#legalitas" class="block text-slate-400 hover:text-teal-400 py-1" onclick="toggleMenu()">Legalitas</a>
+        </div>
+    </nav>
+
+    <!-- HERO / HEADER -->
+    <header id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden px-4">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(20,184,166,0.1),transparent_50%)]"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700/50 text-xs text-teal-400 mb-6 glass-panel">
+                <span class="w-2 quarter h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Keputusan Rektor No. 331 Tahun 2026
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+                Komite & Gugus <br>
+                <span class="bg-gradient-to-r from-teal-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">Penjaminan Mutu (KPM - GPM)</span>
+            </h1>
+            <p class="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mb-8">
+                Fakultas Dakwah dan Komunikasi, Universitas Islam Negeri Alauddin Makassar. Berkomitmen mengendalikan mutu Tri Dharma melalui siklus PPEPP secara berkesinambungan.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#tugas" class="px-5 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 font-semibold rounded-xl text-sm shadow-lg shadow-teal-500/20 hover:opacity-90 transition-all">
+                    Eksplor Dashboard
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- BODY (Left & Center Columns) -->
+            <div class="lg:col-span-3 space-y-12">
+                
+                <!-- Section: Tugas Pokok (Interactive Bento) -->
+                <section id="tugas" class="scroll-mt-24">
+                    <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-teal-400"></i> Tugas Pokok & Fungsi Mandat
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Card 1 -->
+                        <div class="glass-panel p-5 rounded-2xl hover:border-teal-500/30 transition-all duration-300">
+                            <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-teal-400 mb-4">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </div>
+                            <h3 class="font-semibold text-slate-100 mb-2">Sistem Dokumen Mutu</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Memastikan ketersediaan dan kekinian sistem dokumen mutu di tingkat fakultas, pascasarjana, hingga program studi secara berkala.</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="glass-panel p-5 rounded-2xl hover:border-teal-500/30 transition-all duration-300">
+                            <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-teal-400 mb-4">
+                                <i class="fa-solid fa-arrows-spin"></i>
+                            </div>
+                            <h3 class="font-semibold text-slate-100 mb-2">Siklus PPEPP & SPMI</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Memastikan pemenuhan dan peningkatan standar SPMI secara konsisten melalui siklus PPEPP (Penetapan, Pelaksanaan, Evaluasi, Pengendalian, dan Peningkatan).</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="glass-panel p-5 rounded-2xl hover:border-teal-500/30 transition-all duration-300">
+                            <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-teal-400 mb-4">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="font-semibold text-slate-100 mb-2">Monitoring & IKU</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Melaksanakan monitoring dan evaluasi periodik pada bidang akademik/non-akademik berbasis rencana strategis serta Indikator Kinerja Utama (IKU).</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="glass-panel p-5 rounded-2xl hover:border-teal-500/30 transition-all duration-300">
+                            <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-teal-400 mb-4">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="font-semibold text-slate-100 mb-2">Akreditasi & AMI</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Mengawal keberlangsungan Audit Mutu Internal (AMI) serta memaksimalkan tercapainya target indikator pada e-SMS PTKIN di setiap prodi.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Struktur Organisasi (Interactive Tabs) -->
+                <section id="struktur" class="scroll-mt-24">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-sitemap text-emerald-400"></i> Struktur Pengelola 2026
+                        </h2>
+                        <!-- Tabs Controller -->
+                        <div class="inline-flex p-1 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
+                            <button onclick="switchTab('kpm')" id="tab-kpm" class="px-4 py-1.5 rounded-lg font-medium transition-all text-slate-950 bg-gradient-to-r from-teal-400 to-emerald-400 shadow-sm">KPM Fakultas</button>
+                            <button onclick="switchTab('gpm')" id="tab-gpm" class="px-4 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white">GPM Program Studi</button>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: KPM -->
+                    <div id="content-kpm" class="space-y-4">
+                        <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-teal-400">
+                            <span class="text-[10px] uppercase tracking-widest text-teal-400 font-bold block mb-1">Pimpinan Komite</span>
+                            <h3 class="text-lg font-bold text-white mb-4">Komite Penjaminan Mutu (KPM)</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div class="bg-slate-900/40 p-3 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-slate-500">Ketua</p>
+                                    <p class="font-semibold text-slate-200">Dr. Usman Noer, S.Ag., M.Ag.</p>
+                                </div>
+                                <div class="bg-slate-900/40 p-3 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-slate-500">Sekretaris</p>
+                                    <p class="font-semibold text-slate-200">Imaduddin Fadhilurrahman, S.Fil., M.Sc.</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-slate-900/40 p-4 rounded-xl border border-slate-800">
+                                <p class="text-xs text-slate-500 mb-2">Anggota Komite</p>
+                                <ul class="space-y-2 text-slate-300 text-xs">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-user text-slate-600"></i> Dr. Ibnu Hajar Yusuf, S.Sos., M.I.Kom.</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-user text-slate-600"></i> Hasbullah Mathar, S.HI., S.Sn., M.M.</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-user text-slate-600"></i> Dr. Harlan, S.Ag., M.Pd.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: GPM (Grid Bento Card per Prodi) -->
+                    <div id="content-gpm" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- KPI -->
+                        <div class="glass-panel p-4 rounded-xl">
+                            <h4 class="text-xs font-bold text-emerald-400 mb-2">KPI (Komunikasi Penyiaran Islam)</h4>
+                            <div class="space-y-1.5 text-xs">
+                                <p><span class="text-slate-500">Ketua:</span> Aguswandi, S.Sos., M.I.Kom.</p>
+                                <p><span class="text-slate-500">Anggota:</span> Jalaluddin B, S.S., M.A. / Andi Muh. Fadli, S.Sos., M.Pd.</p>
+                            </div>
+                        </div>
+                        <!-- BPI -->
+                        <div class="glass-panel p-4 rounded-xl">
+                            <h4 class="text-xs font-bold text-emerald-400 mb-2">BPI (Bimbingan dan Penyiaran Islam)</h4>
+                            <div class="space-y-1.5 text-xs">
+                                <p><span class="text-slate-500">Ketua:</span> Dr. Sukman S, S.Ag., M.Pd.I.</p>
+                                <p><span class="text-slate-500">Anggota:</span> Fatimah, S.Ag., M.Ag. / Nurhikmah M, S.Sos., M.A.</p>
+                            </div>
+                        </div>
+                        <!-- PMI -->
+                        <div class="glass-panel p-4 rounded-xl">
+                            <h4 class="text-xs font-bold text-emerald-400 mb-2">PMI (Pengembangan Masyarakat Islam)</h4>
+                            <div class="space-y-1.5 text-xs">
+                                <p><span class="text-slate-500">Ketua:</span> Dr. Irwanti Said, M.Pd.</p>
+                                <p><span class="text-slate-500">Anggota:</span> Drs. Rusdi Room, M.Pd. / Marta Suharsih, S.Sos., M.Si.</p>
+                            </div>
+                        </div>
+                        <!-- MD -->
+                        <div class="glass-panel p-4 rounded-xl">
+                            <h4 class="text-xs font-bold text-emerald-400 mb-2">MD (Manajemen Dakwah)</h4>
+                            <div class="space-y-1.5 text-xs">
+                                <p><span class="text-slate-500">Ketua:</span> Saidin Mansyur, S.S., M.Hum.</p>
+                                <p><span class="text-slate-500">Anggota:</span> Dr. St. Nasriah, M.Sos.I. / Drs. Muh. Anwar, M.Hum.</p>
+                            </div>
+                        </div>
+                        <!-- Jurnalistik -->
+                        <div class="glass-panel p-4 rounded-xl">
+                            <h4 class="text-xs font-bold text-emerald-400 mb-2">Jurnalistik</h4>
+                            <div class="space-y-1.5 text-xs">
+                                <p><span class="text-slate-500">Ketua:</span> Hartina Sanusi, S.Pt., M.I.Kom.</p>
+                                <p><span class="text-slate-500">Anggota:</span> Hj. Andi Fauziah Astrid A, S.Sos., M.Si. / Andi Tennissanna Syam, S.Pd., M.Pd.</p>
+                            </div>
+                        </div>
+                        <!-- Ilmu Komunikasi -->
+                        <div class="glass-panel p-4 rounded-xl">
+                            <h4 class="text-xs font-bold text-emerald-400 mb-2">Ilmu Komunikasi</h4>
+                            <div class="space-y-1.5 text-xs">
+                                <p><span class="text-slate-500">Ketua:</span> Suriyani Musi, S.Sos., M.I.Kom.</p>
+                                <p><span class="text-slate-500">Anggota:</span> Dr. Asni Djamereng, M.Si. / A. Dian Fitriana Eka Putri, M.I.Kom.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside class="space-y-6 lg:border-l lg:border-slate-800/80 lg:pl-6">
+                <!-- Box 1: Pimpinan Tertinggi -->
+                <div class="glass-panel p-5 rounded-2xl">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-user-tie text-teal-400"></i> Penanggung Jawab
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-[10px] text-slate-500">Rektor UIN Alauddin</p>
+                            <p class="text-xs font-semibold text-slate-200">Prof. Hamdan, MA., Ph.D.</p>
+                        </div>
+                        <hr class="border-slate-800">
+                        <div>
+                            <p class="text-[10px] text-slate-500 mb-1">Dewan Pengarah</p>
+                            <ol class="list-decimal list-inside text-[11px] text-slate-400 space-y-1">
+                                <li>Prof. Dr. Kamaluddin Abunawas, M.Ag.</li>
+                                <li>Prof. Dr. H. Abd. Rasyid M., M.Si.</li>
+                                <li>M. Nur Akbar Rasyid, Ph.D.</li>
+                                <li>Dr. H. M. Muflih B Fattah, M.M.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box 2: Legalitas SK -->
+                <div id="legalitas" class="glass-panel p-5 rounded-2xl scroll-mt-24">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-gavel text-amber-400"></i> Legalitas Hukum
+                    </h3>
+                    <p class="text-[11px] text-slate-400 leading-relaxed mb-3">
+                        Ditetapkan secara resmi di Gowa pada 30 Januari 2026 berdasarkan SK Rektor No. 331 Tahun 2026 mengikuti Permendikbudristek No. 53 Tahun 2023 tentang SPM Pendidikan Tinggi.
+                    </p>
+                    <div class="text-[10px] bg-slate-900/60 p-2 rounded-lg text-amber-400/90 border border-amber-500/10 inline-block">
+                        Status Keberlakuan: Aktif / Sah
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 bg-slate-950/60 backdrop-blur-md py-8 px-4 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 Oleh Ariel Usman. Hak Cipta Dilindungi.</p>
+            <div class="flex items-center gap-3">
+                <a href="https://instagram.com/arielrcun" target="_blank" rel="noopener" class="w-8 h-8 rounded-full bg-slate-900 hover:bg-teal-500/10 border border-slate-800 hover:border-teal-400/30 flex items-center justify-center text-slate-400 hover:text-teal-400 transition-all">
+                    <i class="fa-brands fa-instagram text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Mobile Navigation Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Navbar Scroll Styling Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('bg-slate-950/90', 'shadow-xl');
+                nav.classList.remove('bg-slate-100/10');
+            } else {
+                nav.classList.remove('bg-slate-950/90', 'shadow-xl');
+            }
+        });
+
+        // Tab Switcher (KPM / GPM) Control
+        function switchTab(type) {
+            const tabKpm = document.getElementById('tab-kpm');
+            const tabGpm = document.getElementById('tab-gpm');
+            const contentKpm = document.getElementById('content-kpm');
+            const contentGpm = document.getElementById('content-gpm');
+
+            // Active State Classes (Tailwind)
+            const activeClasses = ['text-slate-950', 'bg-gradient-to-r', 'from-teal-400', 'to-emerald-400', 'shadow-sm'];
+            const inactiveClasses = ['text-slate-400', 'hover:text-white'];
+
+            if (type === 'kpm') {
+                // Adjust Control Buttons
+                tabKpm.classList.add(...activeClasses);
+                tabKpm.classList.remove(...inactiveClasses);
+                tabGpm.classList.remove(...activeClasses);
+                tabGpm.classList.add(...inactiveClasses);
+
+                // Display Content
+                contentKpm.classList.remove('hidden');
+                contentGpm.classList.add('hidden');
+            } else {
+                // Adjust Control Buttons
+                tabGpm.classList.add(...activeClasses);
+                tabGpm.classList.remove(...inactiveClasses);
+                tabKpm.classList.remove(...activeClasses);
+                tabKpm.classList.add(...inactiveClasses);
+
+                // Display Content
+                contentGpm.classList.remove('hidden');
+                contentGpm.classList. some;
+                contentGpm.className = "grid grid-cols-1 md:grid-cols-2 gap-4"; // Ensure grid layout works properly
+                contentKpm.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
